@@ -4,7 +4,7 @@
 
 **A retrieval-augmented QA service on an embedded vector store — with the cost argument actually measured.**
 
-[![tests](https://img.shields.io/badge/tests-244%20passed-brightgreen)](#testing)
+[![tests](https://img.shields.io/badge/tests-255%20passed-brightgreen)](#testing)
 [![python](https://img.shields.io/badge/python-3.10%20%7C%203.12-blue)](pyproject.toml)
 [![ruff](https://img.shields.io/badge/ruff-clean-brightgreen)](pyproject.toml)
 [![offline](https://img.shields.io/badge/tests-no%20API%20key%20needed-informational)](#testing)
@@ -127,7 +127,7 @@ curl -X POST localhost:8000/query \
 | Embedding, indexing, retrieval | The LLM judge |
 | Every retrieval metric | |
 | The entire cost model | |
-| **All 244 tests** | |
+| **All 255 tests** | |
 
 Embeddings are local (`all-MiniLM-L6-v2`, 384-dim) — $0 marginal cost and, more importantly,
 **no quota**.
@@ -307,7 +307,7 @@ from the ranked denominator and reported separately as `n_ranked` vs `n_fallback
 ## Testing
 
 ```bash
-python -m pytest                        # 244 passed, 13 skipped — no API key, no network
+python -m pytest                        # 255 passed, 13 skipped — no API key, no network
 ruff check . && ruff format --check .
 ```
 
