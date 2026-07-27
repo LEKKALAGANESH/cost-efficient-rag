@@ -1279,7 +1279,30 @@
         "generation_skipped": true,
         "fallback_correct": true
       }
-    ]
+    ],
+    "text_overlap": {
+      "n": 11,
+      "scored_question_ids": [
+        "q01",
+        "q02",
+        "q03",
+        "q05",
+        "q06",
+        "q09",
+        "q10",
+        "q11",
+        "q12",
+        "q13",
+        "q14"
+      ],
+      "exact_match": 0.0,
+      "token_f1": 0.3735,
+      "token_f1_min": 0.1319,
+      "token_f1_max": 0.7945,
+      "definition": "SQuAD-style. Both normalise by lowercasing and removing inline citations, articles and punctuation. EM is string equality after normalisation; token_f1 is the harmonic mean of bag-of-token precision and recall, with multiplicity preserved.",
+      "excluded": "Refused questions and the out-of-corpus question are excluded: scoring a refusal against a gold answer measures the refusal policy, which fallback_correctness already reports separately.",
+      "caveat": "Weak instruments for this task. Answers are grounded prose with citations; gold answers are hand-written single sentences. Two answers can be equally correct and share little surface form, so EM approximates a formatting check and F1 rewards echoing the gold phrasing. Reported because the assignment asks for them, and read alongside groundedness rather than instead of it."
+    }
   },
   "judge_validation": {
     "n_probes": 4,
