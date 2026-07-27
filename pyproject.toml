@@ -1,0 +1,46 @@
+[project]
+name = "cost-efficient-rag"
+version = "1.0.0"
+description = "RAG question answering over an embedded vector store, with a measured cost and quality argument."
+requires-python = ">=3.10"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+exclude = ["data", "results", "logs", ".cache"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM", "RUF"]
+ignore = [
+    "E501",    # line length is enforced by the formatter, not the linter
+    "B008",    # FastAPI's Depends()/File() in defaults is the documented idiom
+    "RUF012",  # ClassVar annotations add noise to plain data holders here
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Tests reach into private members deliberately to assert on internals.
+"tests/*" = ["SLF001", "N802"]
+"scripts/*" = ["E402"]  # sys.path must be set before importing src/
+"eval/*" = ["E402"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--strict-markers"
+markers = [
+    "e2e: end-to-end test requiring a running service or live API keys",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning:starlette.*",
+]
+
+[tool.coverage.run]
+source = ["src", "eval"]
+omit = ["*/__init__.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]

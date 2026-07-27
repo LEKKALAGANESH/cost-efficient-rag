@@ -1,0 +1,125 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Placeholder keys: config requires them at boot, and no test makes a live
+  # LLM call. Every LLM interaction in the suite is mocked, so CI needs no
+  # secrets and burns no free-tier quota.
+  GROQ_API_KEY: ci-placeholder-not-a-real-key
+  GEMINI_API_KEY: ci-placeholder-not-a-real-key
+  OMP_NUM_THREADS: "1"
+  TOKENIZERS_PARALLELISM: "false"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install ruff==0.15.5
+      - run: ruff check .
+      - run: ruff format --check .
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Both ends of the supported range. Testing only 3.12 left the
+        # `requires-python = ">=3.10"` floor in pyproject.toml unverified.
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install dependencies (CPU-only torch)
+        run: |
+          pip install --extra-index-url https://download.pytorch.org/whl/cpu \
+            -r requirements.txt
+
+      - name: Cache the embedding model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-all-MiniLM-L6-v2-v1
+
+      - name: Run tests with a coverage gate
+        run: |
+          python -m pytest tests/ -v \
+            --cov=src --cov=eval \
+            --cov-report=term-missing \
+            --cov-fail-under=80
+
+      - name: Secret scan
+        run: |
+          # Fail on a real key shape, not on the placeholder above.
+          if grep -rInE '(gsk_[A-Za-z0-9]{20,}|AIza[A-Za-z0-9_-]{30,}|sk-[A-Za-z0-9]{20,})' \
+              --exclude-dir=.git --exclude-dir=.github . ; then
+            echo "::error::A credential-shaped string was found in the tree."
+            exit 1
+          fi
+          echo "No credential-shaped strings found."
+
+      - name: Assert .env is untracked
+        run: |
+          if git ls-files --error-unmatch .env 2>/dev/null; then
+            echo "::error::.env is tracked in git."
+            exit 1
+          fi
+          echo ".env is not tracked."
+
+  smoke:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: |
+          pip install --extra-index-url https://download.pytorch.org/whl/cpu \
+            -r requirements.txt
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-all-MiniLM-L6-v2-v1
+
+      - name: Build the corpus and ingest
+        run: |
+          python scripts/build_corpus.py
+          python scripts/ingest_corpus.py --reset
+
+      - name: Idempotency check (re-ingest adds zero vectors)
+        run: |
+          BEFORE=$(python -c "
+          from src.vector_store import get_vector_store
+          print(get_vector_store().count())")
+          python scripts/ingest_corpus.py
+          AFTER=$(python -c "
+          from src.vector_store import get_vector_store
+          print(get_vector_store().count())")
+          echo "vectors before=$BEFORE after=$AFTER"
+          test "$BEFORE" = "$AFTER" || { echo "::error::re-ingest changed the count"; exit 1; }
+
+      - name: Retrieval eval (no LLM calls, so it runs on every push)
+        run: python -m eval.evaluate_retrieval
+
+      - name: Cost model (standalone, pure arithmetic)
+        run: python -m eval.cost_analysis
+
+      - name: Eval-dataset labels still resolve against the corpus
+        run: python scripts/build_eval_dataset.py --check

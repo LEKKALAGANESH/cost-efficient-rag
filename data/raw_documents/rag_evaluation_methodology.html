@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>RAG Evaluation Methodology</title>
+  <style>body { font-family: Georgia, serif; max-width: 40em; }</style>
+</head>
+<body>
+
+<h1>RAG Evaluation Methodology</h1>
+
+<p><em>Synthetic reference document authored for the cost-efficient-rag
+evaluation corpus. Contains no confidential or third-party material.</em></p>
+
+<h2>1. Why retrieval and generation are scored separately</h2>
+
+<p>A retrieval-augmented system has two failure modes that look identical from
+the outside. The answer can be wrong because the correct passage was never
+retrieved, or wrong because the passage was retrieved and the generator ignored
+or misread it. A single end-to-end score cannot distinguish these, and the
+remedies are opposite: the first calls for changes to chunking, embeddings, or
+top-k, the second for changes to the prompt or the generation model.</p>
+
+<p>Our standard is therefore to score retrieval in isolation, using classical
+information-retrieval metrics against a labelled relevance set, and to score
+generation separately against the context that retrieval actually
+returned.</p>
+
+<h2>2. Retrieval metrics</h2>
+
+<h3>2.1 Hit Rate</h3>
+
+<p>Hit Rate scores one for a query if any relevant chunk appears anywhere in
+the top-k results, and zero otherwise. It answers the question "did retrieval
+surface anything useful at all?" and nothing more.</p>
+
+<h3>2.2 Recall@k</h3>
+
+<p>Recall@k is the fraction of all relevant chunks that appear in the top-k
+results: the size of the intersection of retrieved and relevant, divided by
+the number of relevant chunks.</p>
+
+<p>Recall@k and Hit Rate coincide only when every query has exactly one
+relevant chunk. As soon as any query has two or more, they diverge, and
+reporting Hit Rate under the label Recall@k inflates the apparent score. This
+is the most frequently observed error in RAG evaluation write-ups.</p>
+
+<h3>2.3 Mean Reciprocal Rank</h3>
+
+<p>For each query, the reciprocal rank is one divided by the one-indexed
+position of the first relevant chunk. If no relevant chunk appears in the
+top-k, the term contributes zero. MRR is the mean of these values across the
+whole question set.</p>
+
+<p>Excluding zero-scoring queries from the average rather than counting them as
+zero is a silent inflation of the metric. A query the system failed on is a
+data point, not a missing value.</p>
+
+<h3>2.4 nDCG@k</h3>
+
+<p>Discounted cumulative gain at k is the sum, over ranks one through k, of the
+relevance grade at that rank divided by the base-two logarithm of the rank plus
+one. Rank one is therefore undiscounted, which is the standard convention and
+matches trec_eval, sklearn, and ranx.</p>
+
+<p>Normalized DCG divides that quantity by the ideal DCG. The ideal DCG must be
+truncated at k: it sums over the first min(number of relevant chunks, k) grades
+sorted in descending order. Summing over <em>all</em> relevant chunks instead
+caps nDCG below one for a flawless ranking. With seven relevant chunks scored
+at k equals five, a perfect top-five would report approximately 0.79 rather
+than 1.0, and the system would appear to be failing when it is in fact
+optimal.</p>
+
+<h3>2.5 Context precision</h3>
+
+<p>Context precision, in its flat form, is the number of relevant chunks in the
+top-k divided by k. It measures what fraction of the material handed to the
+generator was actually useful.</p>
+
+<p>This metric has a structural ceiling that must be reported alongside it.
+When a query has one relevant chunk and k is five, the maximum achievable
+precision is 0.20. A perfectly performing system reports approximately 0.19,
+and a reader who does not know the ceiling reads that as a failure. Always
+publish the achievable ceiling, computed as the mean over queries of min(number
+of relevant chunks, k) divided by k, and the ratio of achieved to
+achievable.</p>
+
+<h2>3. Handling unjudgeable queries</h2>
+
+<p>An evaluation set should contain at least one deliberately out-of-corpus
+question to exercise the refusal path. Such a question has an empty relevant
+set, which makes Recall@k a zero-divided-by-zero expression.</p>
+
+<p>The rule we apply uniformly: queries with an empty relevant set are excluded
+from Recall@k, Hit Rate, MRR, nDCG@k, and context precision alike, and are
+scored only under fallback correctness. Both denominators must be reported
+separately so a reader can audit them. Within the judged queries, a query whose
+relevant chunks exist but do not appear in the top-k scores zero on all five
+metrics. It is scored, not excluded.</p>
+
+<h2>4. Answer metrics</h2>
+
+<h3>4.1 Faithfulness</h3>
+
+<p>Faithfulness asks whether every factual claim in the generated answer traces
+to something stated in the retrieved context. It does <em>not</em> ask whether
+the claim is true in the world. An answer that confidently repeats an error
+present in the source documents is faithful and incorrect; those are two
+different axes and conflating them is the most common conceptual error in
+answer evaluation.</p>
+
+<p>The recommended implementation extracts atomic claims from the answer,
+checks each against the context, and reports the ratio of supported claims to
+total claims.</p>
+
+<h3>4.2 Answer relevance</h3>
+
+<p>Answer relevance asks whether the answer addresses the information need
+actually expressed in the question. A perfectly faithful answer to a different
+question must score high on faithfulness and low on relevance. Keeping the two
+axes independent is what makes the pair diagnostic rather than decorative.</p>
+
+<h3>4.3 Fallback correctness</h3>
+
+<p>For deliberately out-of-corpus questions, the system must return its refusal
+string exactly and must not have invoked the generation model at all. This is
+verifiable from the query log: the fallback flag is set and zero completion
+tokens were billed.</p>
+
+<h2>5. Judge design</h2>
+
+<p>An LLM judge given a bare instruction to rate an answer from one to ten is
+indistinguishable from noise. Three properties make a judge usable.</p>
+
+<p>First, an explicit rubric with named criteria rather than a single number.
+Second, a structured output schema in which the rationale field precedes the
+score field. Under constrained decoding a model emits fields in schema order,
+so placing the score first makes the rationale a post-hoc justification and
+voids the grounding it was meant to provide. Third, a judge drawn from a
+different model family than the generator, which removes the self-enhancement
+bias by which models systematically prefer their own family's prose.</p>
+
+<h2>6. Statistical power</h2>
+
+<p>At fifteen to thirty questions, the binomial standard error on a Recall@5
+near 0.7 is approximately 0.10, so the ninety-five percent confidence interval
+half-width is roughly plus or minus 0.20. Two configurations differing by less
+than about twenty absolute points are statistically indistinguishable on a set
+that size.</p>
+
+<p>The practical consequence is that chunk size and top-k should be fixed a
+priori from published defaults rather than selected against the evaluation set.
+Freezing the question set prevents question leakage but does nothing about
+model-selection overfitting, which is the actual mechanism at this sample size.
+Report the parameter sweep as descriptive, with confidence intervals, and
+retain the a-priori default.</p>
+
+<h2>7. Label completeness</h2>
+
+<p>Relevance labels written from memory over a corpus of thousands of chunks
+will be incomplete. Genuinely relevant chunks that were never labelled are
+scored as errors, biasing every metric downward by an unmeasured amount. This
+is the classical TREC incomplete-judgments problem.</p>
+
+<p>The mitigation is pooling: run top-ten retrieval for each question under two
+or three configurations, take the union of retrieved identifiers as a judgment
+pool, and judge that pool. Chunks below pool depth are treated as non-relevant,
+which is the standard TREC assumption and should be stated explicitly.</p>
+
+</body>
+</html>

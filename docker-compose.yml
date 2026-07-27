@@ -1,0 +1,51 @@
+# Local Postgres + pgvector: a third, account-free path to the R21 bonus
+# backend, so the comparison can be reproduced without a Supabase project (and
+# without depending on one being un-paused).
+#
+#   docker compose up -d db
+#   export SUPABASE_DB_URL=postgresql://postgres:postgres@localhost:5433/rag
+#   export VECTOR_BACKEND=supabase
+#   python scripts/ingest_corpus.py --reset
+#   python -m eval.evaluate_retrieval
+#
+# The same command set also runs the shared backend contract test:
+#   SUPABASE_DB_URL=... python -m pytest tests/test_vector_store.py -v
+
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: rag
+    ports:
+      # 5433 on the host to avoid colliding with a local Postgres on 5432.
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d rag"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: .
+    # Bound to loopback: the service is unauthenticated by design and must not
+    # be exposed to a network. See README "Threat model".
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      GROQ_API_KEY: ${GROQ_API_KEY:?set GROQ_API_KEY in your shell or .env}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:?set GEMINI_API_KEY in your shell or .env}
+      VECTOR_BACKEND: ${VECTOR_BACKEND:-lancedb}
+      SUPABASE_DB_URL: postgresql://postgres:postgres@db:5432/rag
+    volumes:
+      - ./data/lancedb_store:/app/data/lancedb_store
+      - ./logs:/app/logs
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:

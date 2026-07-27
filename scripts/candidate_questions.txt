@@ -1,0 +1,19 @@
+# Candidate questions for the frozen eval set, one per line.
+# Input to scripts/build_label_pool.py; the labelled output is
+# data/eval_dataset.json. Kept in the repo so the labelling process is
+# reproducible rather than asserted.
+How much weight does operational burden carry in the vector store scoring rubric, and why is it weighted highest?
+Why is Qdrant's Python local mode not a substitute for the Qdrant server binary?
+Under what circumstances should a team adopt a managed vector service instead of an embedded one?
+What operational responsibilities does choosing an embedded vector store transfer to the adopting team?
+What problem does pgvector's hnsw.iterative_scan setting solve?
+When are Recall@k and Hit Rate the same metric, and when do they diverge?
+How must IDCG@k be truncated, and what goes wrong if it is not?
+Why should the rationale field come before the score in an LLM judge's output schema?
+How are evaluation questions with no relevant chunks handled in the retrieval metrics?
+What is the maximum achievable context precision when a query has one relevant chunk and k is five?
+Why is reading the existing chunk IDs and then appending an unsafe way to achieve idempotency?
+Why must stale-chunk cleanup be keyed on the source name rather than on the content hash?
+At roughly what chunk size does the all-MiniLM-L6-v2 embedding model start silently truncating input?
+Why is marginal compute not zero for an embedded vector store at ten million vectors?
+What is the average resting heart rate of an adult blue whale in beats per minute?

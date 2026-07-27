@@ -1,0 +1,150 @@
+{
+  "method": "Top-1 cosine similarity scored over in-corpus and out-of-corpus probes disjoint from the frozen eval set. Among thresholds whose false-refusal rate stays at or below 5%, tau is the highest-accuracy candidate that is furthest from both classes, so the choice is robust rather than flush against the lowest in-corpus score.",
+  "caveat": "The clean separation here is partly an artefact of probe design: the out-of-corpus probes are far off-topic. Near-miss topical questions would land inside the 0.25-0.45 band where relevant and merely-topical pairs overlap. tau is therefore treated as a cheap pre-filter, and the model's own prompted abstention as the primary correctness mechanism.",
+  "selection_rationale": "highest accuracy within the false-refusal budget, and among those ties the threshold furthest from both classes",
+  "separating_band": [
+    0.2025,
+    0.422
+  ],
+  "margin_to_nearer_class": 0.0975,
+  "top_k": 5,
+  "n_in_corpus": 12,
+  "n_out_of_corpus": 12,
+  "in_corpus_scores": [
+    0.422,
+    0.6718,
+    0.7295,
+    0.4944,
+    0.6535,
+    0.7493,
+    0.6763,
+    0.6145,
+    0.512,
+    0.596,
+    0.429,
+    0.5636
+  ],
+  "out_of_corpus_scores": [
+    0.1424,
+    0.1607,
+    0.1393,
+    0.151,
+    0.2025,
+    0.0961,
+    0.1662,
+    0.1685,
+    0.1368,
+    0.1848,
+    0.1265,
+    0.1603
+  ],
+  "in_corpus_mean": 0.5927,
+  "out_of_corpus_mean": 0.1529,
+  "sweep": [
+    {
+      "tau": 0.05,
+      "false_refusals": 0,
+      "false_refusal_rate": 0.0,
+      "false_answers": 12,
+      "false_answer_rate": 1.0,
+      "accuracy": 0.5
+    },
+    {
+      "tau": 0.1,
+      "false_refusals": 0,
+      "false_refusal_rate": 0.0,
+      "false_answers": 11,
+      "false_answer_rate": 0.9167,
+      "accuracy": 0.5417
+    },
+    {
+      "tau": 0.15,
+      "false_refusals": 0,
+      "false_refusal_rate": 0.0,
+      "false_answers": 7,
+      "false_answer_rate": 0.5833,
+      "accuracy": 0.7083
+    },
+    {
+      "tau": 0.2,
+      "false_refusals": 0,
+      "false_refusal_rate": 0.0,
+      "false_answers": 1,
+      "false_answer_rate": 0.0833,
+      "accuracy": 0.9583
+    },
+    {
+      "tau": 0.25,
+      "false_refusals": 0,
+      "false_refusal_rate": 0.0,
+      "false_answers": 0,
+      "false_answer_rate": 0.0,
+      "accuracy": 1.0
+    },
+    {
+      "tau": 0.3,
+      "false_refusals": 0,
+      "false_refusal_rate": 0.0,
+      "false_answers": 0,
+      "false_answer_rate": 0.0,
+      "accuracy": 1.0
+    },
+    {
+      "tau": 0.35,
+      "false_refusals": 0,
+      "false_refusal_rate": 0.0,
+      "false_answers": 0,
+      "false_answer_rate": 0.0,
+      "accuracy": 1.0
+    },
+    {
+      "tau": 0.4,
+      "false_refusals": 0,
+      "false_refusal_rate": 0.0,
+      "false_answers": 0,
+      "false_answer_rate": 0.0,
+      "accuracy": 1.0
+    },
+    {
+      "tau": 0.45,
+      "false_refusals": 2,
+      "false_refusal_rate": 0.1667,
+      "false_answers": 0,
+      "false_answer_rate": 0.0,
+      "accuracy": 0.9167
+    },
+    {
+      "tau": 0.5,
+      "false_refusals": 3,
+      "false_refusal_rate": 0.25,
+      "false_answers": 0,
+      "false_answer_rate": 0.0,
+      "accuracy": 0.875
+    },
+    {
+      "tau": 0.55,
+      "false_refusals": 4,
+      "false_refusal_rate": 0.3333,
+      "false_answers": 0,
+      "false_answer_rate": 0.0,
+      "accuracy": 0.8333
+    },
+    {
+      "tau": 0.6,
+      "false_refusals": 6,
+      "false_refusal_rate": 0.5,
+      "false_answers": 0,
+      "false_answer_rate": 0.0,
+      "accuracy": 0.75
+    }
+  ],
+  "selected_tau": 0.3,
+  "confusion_at_selected_tau": {
+    "tau": 0.3,
+    "false_refusals": 0,
+    "false_refusal_rate": 0.0,
+    "false_answers": 0,
+    "false_answer_rate": 0.0,
+    "accuracy": 1.0
+  }
+}

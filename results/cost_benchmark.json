@@ -1,0 +1,104 @@
+{
+  "queries_per_month": 50000,
+  "assumptions": {
+    "embedding_dim": 384,
+    "bytes_per_vector": 2236,
+    "ebs_gp3_usd_per_gb_month": 0.08,
+    "serverless_min_monthly_usd": 50.0,
+    "serverless_usd_per_1m_ru": 8.25,
+    "compute_usd_per_month": {
+      "100000": [
+        0.0,
+        0.0
+      ],
+      "1000000": [
+        12.0,
+        12.0
+      ],
+      "10000000": [
+        35.0,
+        85.0
+      ]
+    }
+  },
+  "scales": [
+    {
+      "vectors": 100000,
+      "storage_gb": 0.2082,
+      "embedded_storage_usd": 0.08,
+      "embedded_compute_low_usd": 0.0,
+      "embedded_compute_high_usd": 0.0,
+      "embedded_backup_usd": 0.0048,
+      "embedded_total_low_usd": 0.08,
+      "embedded_total_high_usd": 0.08,
+      "serverless_usage_usd": 0.1718,
+      "serverless_billed_usd": 50.0,
+      "serverless_free_tier_applies": true,
+      "resource_hour_usd": 3.27,
+      "resource_hour_unquantized_usd": 13.05,
+      "activity_unit_usd": 45.0,
+      "read_units_per_query": 0.25
+    },
+    {
+      "vectors": 1000000,
+      "storage_gb": 2.0824,
+      "embedded_storage_usd": 0.1666,
+      "embedded_compute_low_usd": 12.0,
+      "embedded_compute_high_usd": 12.0,
+      "embedded_backup_usd": 0.0479,
+      "embedded_total_low_usd": 12.21,
+      "embedded_total_high_usd": 12.21,
+      "serverless_usage_usd": 1.5462,
+      "serverless_billed_usd": 50.0,
+      "serverless_free_tier_applies": false,
+      "resource_hour_usd": 32.67,
+      "resource_hour_unquantized_usd": 130.51,
+      "activity_unit_usd": 80.0,
+      "read_units_per_query": 2.0824
+    },
+    {
+      "vectors": 10000000,
+      "storage_gb": 20.8244,
+      "embedded_storage_usd": 1.6659,
+      "embedded_compute_low_usd": 35.0,
+      "embedded_compute_high_usd": 85.0,
+      "embedded_backup_usd": 0.479,
+      "embedded_total_low_usd": 37.14,
+      "embedded_total_high_usd": 87.14,
+      "serverless_usage_usd": 15.4621,
+      "serverless_billed_usd": 50.0,
+      "serverless_free_tier_applies": false,
+      "resource_hour_usd": 326.68,
+      "resource_hour_unquantized_usd": 1305.15,
+      "activity_unit_usd": 300.0,
+      "read_units_per_query": 20.8244
+    }
+  ],
+  "sensitivity_at_10m": [
+    {
+      "queries_per_month": 50000,
+      "multiplier": "1x",
+      "embedded_low_usd": 37.14,
+      "embedded_high_usd": 87.14,
+      "serverless_usd": 50.0,
+      "verdict": "roughly a wash"
+    },
+    {
+      "queries_per_month": 500000,
+      "multiplier": "10x",
+      "embedded_low_usd": 37.14,
+      "embedded_high_usd": 87.14,
+      "serverless_usd": 92.77,
+      "verdict": "embedded ~1.1x cheaper"
+    },
+    {
+      "queries_per_month": 5000000,
+      "multiplier": "100x",
+      "embedded_low_usd": 74.28,
+      "embedded_high_usd": 174.28,
+      "serverless_usd": 865.88,
+      "verdict": "embedded ~5.0x cheaper"
+    }
+  ],
+  "one_time_paid_embedding_usd_at_10m": 25.0
+}

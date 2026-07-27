@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Calibrate the fallback similarity threshold (tau) empirically. Deliberately DISJOINT from data/eval_dataset.json: tuning tau against the frozen eval set would contaminate every metric computed on it. Run scripts/calibrate_threshold.py to score these probes and pick an operating point.",
+  "operating_point": "Choose the largest tau whose false-refusal rate on in_corpus probes stays at or below 5 percent. Raw bi-encoder cosine is a weak abstention signal - relevant and merely-topical pairs overlap heavily around 0.25-0.45 - so tau is a cheap pre-filter and the model's own prompted abstention is the primary correctness mechanism, not the reverse.",
+  "in_corpus": [
+    "What does the io_buffer_size setting default to?",
+    "How does LanceDB handle concurrent writers?",
+    "What index types does pgvector support?",
+    "Which file formats does the ingestion pipeline accept?",
+    "What does the text normalizer do to hyphenated line breaks?",
+    "How many characters is the default chunk overlap?",
+    "What is the storage price per gigabyte-month for attached SSD?",
+    "How is faithfulness different from factual correctness?",
+    "What does a read unit correspond to in serverless vector pricing?",
+    "Why must a failed retrieval count as zero in MRR rather than be skipped?",
+    "What happens to disk usage without a scheduled optimize call?",
+    "How large is the k-means training sample at ten million vectors?"
+  ],
+  "out_of_corpus": [
+    "What is the best way to poach an egg?",
+    "Who won the 1998 FIFA World Cup final?",
+    "How do I replace the timing belt on a diesel engine?",
+    "What are the symptoms of vitamin D deficiency?",
+    "Explain the plot of Wuthering Heights.",
+    "What is the airspeed velocity of an unladen swallow?",
+    "How do I file a self-assessment tax return?",
+    "What is the melting point of tungsten?",
+    "Which team drafted Michael Jordan?",
+    "How long should I marinate chicken thighs?",
+    "What causes the aurora borealis?",
+    "What is the tallest mountain in South America?"
+  ]
+}

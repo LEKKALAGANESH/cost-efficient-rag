@@ -1,0 +1,343 @@
+{
+  "schema_version": "1.0",
+  "frozen": true,
+  "description": "Fixed evaluation set for cost-efficient-rag. Labels were built by retrieve-then-verify over a judgment pool of the top-10 results across three chunking configurations (500/50, 350/35, 800/80), not written from memory. Chunks below pool depth are treated as non-relevant, the standard TREC assumption. Chunk IDs are valid for the committed corpus at chunk_size=500 / overlap=50; rebuild with scripts/build_eval_dataset.py after any corpus change.",
+  "corpus_documents": [
+    "cost_model_reference.pdf",
+    "ingestion_operations_notes.md",
+    "rag_evaluation_methodology.html",
+    "vector_store_selection_guide.md"
+  ],
+  "corpus_chunk_count": 72,
+  "chunking": {
+    "chunk_size": 500,
+    "chunk_overlap": 50
+  },
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "embedding_dim": 384,
+  "questions": [
+    {
+      "id": "q01",
+      "question": "How much weight does operational burden carry in the vector store scoring rubric, and why is it weighted highest?",
+      "ground_truth_answer": "Operational burden carries 30% of the weight, the largest of the five axes, because in post-incident reviews it is the axis that most often predicts an outage.",
+      "expects_fallback": false,
+      "relevant_chunk_ids": [
+        "c65bbef8dd73b62eae4abd1efd4133b6d7b82ab5ab57dd2225421597bde5c9d2",
+        "cb9246b423a92ef5f0f8d264b6b3c1121700f5130478ffd2659b023bea34290e"
+      ],
+      "relevant_chunks": [
+        {
+          "chunk_id": "c65bbef8dd73b62eae4abd1efd4133b6d7b82ab5ab57dd2225421597bde5c9d2",
+          "source": "vector_store_selection_guide.md",
+          "chunk_index": 3,
+          "relevant_chunk_text": "| Operational burden | 30% | Processes to run, accounts to hold, upgrades to schedule | | Metadata filtering | 25% | Expressiveness of the predicate language | "
+        },
+        {
+          "chunk_id": "cb9246b423a92ef5f0f8d264b6b3c1121700f5130478ffd2659b023bea34290e",
+          "source": "vector_store_selection_guide.md",
+          "chunk_index": 4,
+          "relevant_chunk_text": "Operational burden carries the largest weight because in our post-incident reviews it is the axis that most often predicts an outage. A team that must remember "
+        }
+      ],
+      "notes": "Multi-relevant: the weight table and the justifying sentence fall in different chunks."
+    },
+    {
+      "id": "q02",
+      "question": "Why is Qdrant's Python local mode not a substitute for the Qdrant server binary?",
+      "ground_truth_answer": "The Python local mode contains no HNSW index at all; it brute-force scans and is documented for development and demos at roughly twenty thousand points. All of Qdrant's performance and scaling claims apply to the server binary.",
+      "expects_fallback": false,
+      "relevant_chunk_ids": [
+        "02cfaa1911b0b4b4b4d189ee9eca5fd78b11c36099521a2657c27ff040fa5b0f"
+      ],
+      "relevant_chunks": [
+        {
+          "chunk_id": "02cfaa1911b0b4b4b4d189ee9eca5fd78b11c36099521a2657c27ff040fa5b0f",
+          "source": "vector_store_selection_guide.md",
+          "chunk_index": 11,
+          "relevant_chunk_text": "no HNSW index at all. It performs a brute-force scan and is documented for development, testing, and demonstrations at approximately twenty thousand points. Eve"
+        }
+      ]
+    },
+    {
+      "id": "q03",
+      "question": "Under what circumstances should a team adopt a managed vector service instead of an embedded one?",
+      "ground_truth_answer": "When the corpus exceeds what a single node can index and hold in its working set; when multi-region high availability or a compliance guarantee is required; or when write concurrency from multiple independent services exceeds a single-writer ingestion path. Query volume is deliberately not one of the conditions.",
+      "expects_fallback": false,
+      "relevant_chunk_ids": [
+        "c0d2b49afb38e73cb696f51a0b66051830564389f1265d333e4c3363b07b2bf3",
+        "da71434e1861fdce6b90154ee81317fdd933082cb05ce184ac87acdb4e31cbb4"
+      ],
+      "relevant_chunks": [
+        {
+          "chunk_id": "c0d2b49afb38e73cb696f51a0b66051830564389f1265d333e4c3363b07b2bf3",
+          "source": "vector_store_selection_guide.md",
+          "chunk_index": 19,
+          "relevant_chunk_text": "Adopt a managed vector service instead when any one of three conditions holds: the corpus exceeds what a single node can index and hold in its working set; the "
+        },
+        {
+          "chunk_id": "da71434e1861fdce6b90154ee81317fdd933082cb05ce184ac87acdb4e31cbb4",
+          "source": "vector_store_selection_guide.md",
+          "chunk_index": 20,
+          "relevant_chunk_text": "Query volume is deliberately absent from that list. Higher query volume strengthens rather than weakens the case for the self-hosted path, because usage-based m"
+        }
+      ],
+      "notes": "Multi-relevant: the three conditions and the query-volume caveat are separate chunks."
+    },
+    {
+      "id": "q04",
+      "question": "What is the main limitation of each of the six candidate vector engines?",
+      "ground_truth_answer": "LanceDB: every write creates a version, so disk grows without bound absent scheduled compaction. ChromaDB: weaker metadata filtering and lower storage efficiency above roughly ten million vectors. Qdrant: the Python local mode has no HNSW index at all. pgvector: not embedded, it needs a running PostgreSQL instance. FAISS: an index library with no metadata store and no transactional persistence. sqlite-vec: stable releases are brute-force only.",
+      "expects_fallback": false,
+      "relevant_chunk_ids": [
+        "aedefb47cf958bfeea82cba6966520db4073164ab3e7690203ceb6d6b48518af",
+        "874156d7be72aaa0b0c438b21d8ce4bf0d411ade62a9db3c308905a7237178a1",
+        "02cfaa1911b0b4b4b4d189ee9eca5fd78b11c36099521a2657c27ff040fa5b0f",
+        "913c9298d5432a090af059d5c35abcfc2c2899a345dce53d1e7ea0344a85cdd4",
+        "8b573fdf62b35955073f1e7c6789b31f9f5437fccc63e5040abe41643edf6834",
+        "48e940617a39d57ae298f868d9d1b7bb1a059eb425f5f6bc35fd62152713b208"
+      ],
+      "relevant_chunks": [
+        {
+          "chunk_id": "aedefb47cf958bfeea82cba6966520db4073164ab3e7690203ceb6d6b48518af",
+          "source": "vector_store_selection_guide.md",
+          "chunk_index": 8,
+          "relevant_chunk_text": "Every write to a Lance table creates a new version. Without a scheduled `optimize()` call and cleanup of superseded index files, disk usage grows without bound."
+        },
+        {
+          "chunk_id": "874156d7be72aaa0b0c438b21d8ce4bf0d411ade62a9db3c308905a7237178a1",
+          "source": "vector_store_selection_guide.md",
+          "chunk_index": 9,
+          "relevant_chunk_text": "is weaker than LanceDB's or pgvector's, and its columnar storage efficiency is lower, which becomes visible above roughly ten million vectors in embedded mode. "
+        },
+        {
+          "chunk_id": "02cfaa1911b0b4b4b4d189ee9eca5fd78b11c36099521a2657c27ff040fa5b0f",
+          "source": "vector_store_selection_guide.md",
+          "chunk_index": 11,
+          "relevant_chunk_text": "no HNSW index at all. It performs a brute-force scan and is documented for development, testing, and demonstrations at approximately twenty thousand points. Eve"
+        },
+        {
+          "chunk_id": "913c9298d5432a090af059d5c35abcfc2c2899a345dce53d1e7ea0344a85cdd4",
+          "source": "vector_store_selection_guide.md",
+          "chunk_index": 13,
+          "relevant_chunk_text": "It is not embedded: it requires a running PostgreSQL instance, self-hosted or on a managed tier."
+        },
+        {
+          "chunk_id": "8b573fdf62b35955073f1e7c6789b31f9f5437fccc63e5040abe41643edf6834",
+          "source": "vector_store_selection_guide.md",
+          "chunk_index": 15,
+          "relevant_chunk_text": "It provides no metadata store and no transactional persistence. A team adopting FAISS is committing to build both. Most production users place FAISS behind a wr"
+        },
+        {
+          "chunk_id": "48e940617a39d57ae298f868d9d1b7bb1a059eb425f5f6bc35fd62152713b208",
+          "source": "vector_store_selection_guide.md",
+          "chunk_index": 17,
+          "relevant_chunk_text": "Stable releases perform brute-force search only. DiskANN support has appeared in the pre-release line but has not yet shipped in a stable release, so index avai"
+        }
+      ],
+      "notes": "|relevant| > k: six relevant chunks against a default k of 5, one per engine. Exercises the truncated-IDCG path, where an untruncated IDCG would cap a perfect top-5 at 0.79 instead of 1.0. Also the hardest question in the set - a single dense query vector cannot cover six unrelated passages, so it is expected to score poorly on Recall@5 and to pull the mean down honestly."
+    },
+    {
+      "id": "q05",
+      "question": "What problem does pgvector's hnsw.iterative_scan setting solve?",
+      "ground_truth_answer": "It addresses approximate-index overfiltering when a vector search is combined with a restrictive WHERE clause. Previously a highly selective metadata filter could return far fewer rows than requested, because the index was traversed once and filtering applied afterwards.",
+      "expects_fallback": false,
+      "relevant_chunk_ids": [
+        "fedf641ce5816fbe94eef6715dfcbfe833342944834abf8b3c92506a10609711"
+      ],
+      "relevant_chunks": [
+        {
+          "chunk_id": "fedf641ce5816fbe94eef6715dfcbfe833342944834abf8b3c92506a10609711",
+          "source": "vector_store_selection_guide.md",
+          "chunk_index": 14,
+          "relevant_chunk_text": "hnsw.iterative_scan`, which addresses approximate-index overfiltering when a vector search is combined with a restrictive `WHERE` clause. Before that setting ex"
+        }
+      ]
+    },
+    {
+      "id": "q06",
+      "question": "When are Recall@k and Hit Rate the same metric, and when do they diverge?",
+      "ground_truth_answer": "They coincide only when every query has exactly one relevant chunk. As soon as any query has two or more they diverge, and reporting Hit Rate under the Recall@k label inflates the apparent score.",
+      "expects_fallback": false,
+      "relevant_chunk_ids": [
+        "01e10a9585d2fa7bdef5cf6d7f2c312b2a001c0847e20f613ec5e4aced2a76df"
+      ],
+      "relevant_chunks": [
+        {
+          "chunk_id": "01e10a9585d2fa7bdef5cf6d7f2c312b2a001c0847e20f613ec5e4aced2a76df",
+          "source": "rag_evaluation_methodology.html",
+          "chunk_index": 3,
+          "relevant_chunk_text": "Recall@k and Hit Rate coincide only when every query has exactly one relevant chunk. As soon as any query has two or more, they diverge, and reporting Hit Rate "
+        }
+      ]
+    },
+    {
+      "id": "q07",
+      "question": "How must IDCG@k be truncated, and what goes wrong if it is not?",
+      "ground_truth_answer": "IDCG@k must sum over the first min(number of relevant chunks, k) grades sorted descending. Summing over all relevant chunks caps nDCG below 1.0 for a flawless ranking; with seven relevant chunks at k=5 a perfect top-five reports about 0.79 instead of 1.0.",
+      "expects_fallback": false,
+      "relevant_chunk_ids": [
+        "1a92022a99fbcb7d14e10526135b439839ea68d6becc14e0da7ad7640d6949e8"
+      ],
+      "relevant_chunks": [
+        {
+          "chunk_id": "1a92022a99fbcb7d14e10526135b439839ea68d6becc14e0da7ad7640d6949e8",
+          "source": "rag_evaluation_methodology.html",
+          "chunk_index": 6,
+          "relevant_chunk_text": "The ideal DCG must be truncated at k: it sums over the first min(number of relevant chunks, k) grades sorted in descending order. Summing over all relevant chun"
+        }
+      ]
+    },
+    {
+      "id": "q08",
+      "question": "Why should the rationale field come before the score in an LLM judge's output schema?",
+      "ground_truth_answer": "Under constrained decoding a model emits fields in schema order, so placing the score first makes the rationale a post-hoc justification and voids the grounding it was meant to provide.",
+      "expects_fallback": false,
+      "relevant_chunk_ids": [
+        "1c964d7d09e7d2e6369b865806b7f0a1e62b8f902bb1253d71adb96c345be042",
+        "423750928bf759e4addfa0b5bdb5d6e032b66efc4441eaa6ff96d56951cc47b4"
+      ],
+      "relevant_chunks": [
+        {
+          "chunk_id": "1c964d7d09e7d2e6369b865806b7f0a1e62b8f902bb1253d71adb96c345be042",
+          "source": "rag_evaluation_methodology.html",
+          "chunk_index": 14,
+          "relevant_chunk_text": "the rationale field precedes the score field. Under constrained decoding a model emits fields in schema order, so placing the score first makes the rationale a "
+        },
+        {
+          "chunk_id": "423750928bf759e4addfa0b5bdb5d6e032b66efc4441eaa6ff96d56951cc47b4",
+          "source": "rag_evaluation_methodology.html",
+          "chunk_index": 15,
+          "relevant_chunk_text": "voids the grounding it was meant to provide Third, a judge drawn from a different model family than the generator, which removes the self-enhancement bias by wh"
+        }
+      ],
+      "notes": "Multi-relevant across a chunk boundary."
+    },
+    {
+      "id": "q09",
+      "question": "How are evaluation questions with no relevant chunks handled in the retrieval metrics?",
+      "ground_truth_answer": "They are excluded from Recall@k, Hit Rate, MRR, nDCG@k and context precision alike, and scored only under fallback correctness. Both denominators are reported separately. A query whose relevant chunks exist but are not retrieved scores zero rather than being excluded.",
+      "expects_fallback": false,
+      "relevant_chunk_ids": [
+        "6e7b07812685b504c7c32c97892bedea777296e54c732ad7291c3d274829ff2b"
+      ],
+      "relevant_chunks": [
+        {
+          "chunk_id": "6e7b07812685b504c7c32c97892bedea777296e54c732ad7291c3d274829ff2b",
+          "source": "rag_evaluation_methodology.html",
+          "chunk_index": 10,
+          "relevant_chunk_text": "queries with an empty relevant set are excluded from Recall@k, Hit Rate, MRR, nDCG@k, and context precision alike, and are scored only under fallback correctnes"
+        }
+      ]
+    },
+    {
+      "id": "q10",
+      "question": "What is the maximum achievable context precision when a query has one relevant chunk and k is five?",
+      "ground_truth_answer": "0.20. A perfectly performing system therefore reports approximately 0.19, which is why the achievable ceiling must be published alongside the metric.",
+      "expects_fallback": false,
+      "relevant_chunk_ids": [
+        "b62bc3cd6d64862fc821267178e8a4ae5713b5c8f16a9ae33a17fdd8353af307"
+      ],
+      "relevant_chunks": [
+        {
+          "chunk_id": "b62bc3cd6d64862fc821267178e8a4ae5713b5c8f16a9ae33a17fdd8353af307",
+          "source": "rag_evaluation_methodology.html",
+          "chunk_index": 8,
+          "relevant_chunk_text": "the maximum achievable precision is 0.20. A perfectly performing system reports approximately 0.19, and a reader who does not know the ceiling reads that as a f"
+        }
+      ]
+    },
+    {
+      "id": "q11",
+      "question": "Why is reading the existing chunk IDs and then appending an unsafe way to achieve idempotency?",
+      "ground_truth_answer": "It is a time-of-check-to-time-of-use race: two concurrent ingestion calls both observe the same empty set, both embed, and both append. The duplicate-free property then fails nondeterministically. The correct primitive is a merge keyed on the chunk identifier.",
+      "expects_fallback": false,
+      "relevant_chunk_ids": [
+        "f821a4e4da7a33b4beb0de2a7bbcc4288d933d63afd95491b1e5e8cce7fe0f2f",
+        "e25a3dc92278986bc2211c73d14652b7ad0470cf68f8997656bd04a4b5691687"
+      ],
+      "relevant_chunks": [
+        {
+          "chunk_id": "f821a4e4da7a33b4beb0de2a7bbcc4288d933d63afd95491b1e5e8cce7fe0f2f",
+          "source": "ingestion_operations_notes.md",
+          "chunk_index": 3,
+          "relevant_chunk_text": "time-of-check-to-time-of-use race. Two concurrent ingestion calls - from multiple workers, or from a client timeout followed by a retry - both observe the same "
+        },
+        {
+          "chunk_id": "e25a3dc92278986bc2211c73d14652b7ad0470cf68f8997656bd04a4b5691687",
+          "source": "ingestion_operations_notes.md",
+          "chunk_index": 4,
+          "relevant_chunk_text": "The correct primitive is a merge keyed on the chunk identifier, which is idempotent by construction and tolerant of concurrent execution. The existing-identifie"
+        }
+      ],
+      "notes": "Multi-relevant: the defect and the remedy are in adjacent chunks."
+    },
+    {
+      "id": "q12",
+      "question": "Why must stale-chunk cleanup be keyed on the source name rather than on the content hash?",
+      "ground_truth_answer": "The revised file has a different content hash by definition, so deleting by the new hash cannot reach the rows written under the old one. The pipeline compares stored content hashes for a source name against the incoming one and deletes by source name when they differ.",
+      "expects_fallback": false,
+      "relevant_chunk_ids": [
+        "7efbf68853f042e3d19dc529853f565651960979294c265199646f1c36448f74"
+      ],
+      "relevant_chunks": [
+        {
+          "chunk_id": "7efbf68853f042e3d19dc529853f565651960979294c265199646f1c36448f74",
+          "source": "ingestion_operations_notes.md",
+          "chunk_index": 6,
+          "relevant_chunk_text": "Cleanup must be keyed on the logical document name rather than on the content hash. The revised file has a different content hash by definition, so deleting by "
+        }
+      ]
+    },
+    {
+      "id": "q13",
+      "question": "At roughly what chunk size does the all-MiniLM-L6-v2 embedding model start silently truncating input?",
+      "ground_truth_answer": "It truncates at 256 word-pieces, approximately 1,000 characters, so a chunk size above roughly 900 characters embeds only the head of each chunk while the full text still reaches the generation prompt.",
+      "expects_fallback": false,
+      "relevant_chunk_ids": [
+        "88b9a80736ce8bd023d56b0f116ea1abab17498d0599d0c0ef0d519d1d6903cd"
+      ],
+      "relevant_chunks": [
+        {
+          "chunk_id": "88b9a80736ce8bd023d56b0f116ea1abab17498d0599d0c0ef0d519d1d6903cd",
+          "source": "ingestion_operations_notes.md",
+          "chunk_index": 11,
+          "relevant_chunk_text": "truncates input at 256 word-pieces, approximately 1,000 characters, and does so silently with no warning. A chunk size above roughly 900 characters therefore em"
+        }
+      ]
+    },
+    {
+      "id": "q14",
+      "question": "Why is marginal compute not zero for an embedded vector store at ten million vectors?",
+      "ground_truth_answer": "Because memory is not free. Quantized index codes wanting to stay page-cache-resident, refine reads into the raw vector column, the embedding model's ~0.8-1.2 GB resident set, and a default 2 GB read buffer together push the host from a 2 GiB instance (~$12/mo) to an 8-16 GiB instance (~$49-98/mo).",
+      "expects_fallback": false,
+      "relevant_chunk_ids": [
+        "e886c6e01662e68ef7d1d0a91ff801d88f1b763e1a129ffec5edcf29805c134b",
+        "aa7741ca31538f6cf6a5833868bb72f0d19acfeb51632bc49cf73e2691664caa"
+      ],
+      "relevant_chunks": [
+        {
+          "chunk_id": "e886c6e01662e68ef7d1d0a91ff801d88f1b763e1a129ffec5edcf29805c134b",
+          "source": "cost_model_reference.pdf",
+          "chunk_index": 3,
+          "relevant_chunk_text": "Memory is not free. An embedded store's residency cost is memory, and it does not vanish merely because the process is shared with the application"
+        },
+        {
+          "chunk_id": "aa7741ca31538f6cf6a5833868bb72f0d19acfeb51632bc49cf73e2691664caa",
+          "source": "cost_model_reference.pdf",
+          "chunk_index": 5,
+          "relevant_chunk_text": "The marginal compute row used in this reference is therefore zero dollars at 100,000 vectors, approximately 12 dollars per month at one million, and approximate"
+        }
+      ],
+      "notes": "Multi-relevant, and sourced from the PDF so the PDF loader path is exercised by the eval set."
+    },
+    {
+      "id": "q15",
+      "question": "What is the average resting heart rate of an adult blue whale in beats per minute?",
+      "ground_truth_answer": null,
+      "expects_fallback": true,
+      "relevant_chunk_ids": [],
+      "relevant_chunks": [],
+      "notes": "Deliberately out of corpus. Empty relevant set: excluded from all five rank metrics, scored only under fallback correctness."
+    }
+  ]
+}

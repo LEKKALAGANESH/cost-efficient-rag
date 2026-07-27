@@ -1,0 +1,1339 @@
+{
+  "retrieval": {
+    "primary_k": 5,
+    "retrieval_depth": 20,
+    "n_questions": 15,
+    "n_ranked": 14,
+    "n_fallback": 1,
+    "aggregate": {
+      "hit_rate": {
+        "n": 14,
+        "mean": 0.7857,
+        "std": 0.4258,
+        "ci_low": 0.5714,
+        "ci_high": 1.0
+      },
+      "recall": {
+        "n": 14,
+        "mean": 0.7143,
+        "std": 0.4258,
+        "ci_low": 0.5,
+        "ci_high": 0.9286
+      },
+      "mrr": {
+        "n": 14,
+        "mean": 0.6667,
+        "std": 0.4287,
+        "ci_low": 0.4405,
+        "ci_high": 0.881
+      },
+      "ndcg": {
+        "n": 14,
+        "mean": 0.6306,
+        "std": 0.3958,
+        "ci_low": 0.4228,
+        "ci_high": 0.8211
+      },
+      "context_precision": {
+        "n": 14,
+        "mean": 0.2,
+        "std": 0.1359,
+        "ci_low": 0.1286,
+        "ci_high": 0.2714
+      },
+      "max_achievable_precision": {
+        "n": 14,
+        "mean": 0.3286,
+        "std": 0.2164,
+        "ci_low": 0.2429,
+        "ci_high": 0.4429
+      },
+      "precision_ratio_of_achievable": 0.6086
+    },
+    "k_sweep": {
+      "k=1": {
+        "recall": {
+          "n": 14,
+          "mean": 0.4286,
+          "std": 0.4322,
+          "ci_low": 0.2143,
+          "ci_high": 0.6429
+        },
+        "hit_rate": {
+          "n": 14,
+          "mean": 0.5714,
+          "std": 0.5136,
+          "ci_low": 0.2857,
+          "ci_high": 0.8571
+        },
+        "mrr": {
+          "n": 14,
+          "mean": 0.5714,
+          "std": 0.5136,
+          "ci_low": 0.2857,
+          "ci_high": 0.8571
+        },
+        "context_precision": {
+          "n": 14,
+          "mean": 0.5714,
+          "std": 0.5136,
+          "ci_low": 0.2857,
+          "ci_high": 0.8571
+        },
+        "max_achievable_precision": {
+          "n": 14,
+          "mean": 1.0,
+          "std": 0.0,
+          "ci_low": 1.0,
+          "ci_high": 1.0
+        }
+      },
+      "k=3": {
+        "recall": {
+          "n": 14,
+          "mean": 0.6429,
+          "std": 0.4127,
+          "ci_low": 0.4286,
+          "ci_high": 0.8571
+        },
+        "hit_rate": {
+          "n": 14,
+          "mean": 0.7857,
+          "std": 0.4258,
+          "ci_low": 0.5714,
+          "ci_high": 1.0
+        },
+        "mrr": {
+          "n": 14,
+          "mean": 0.6667,
+          "std": 0.4287,
+          "ci_low": 0.4405,
+          "ci_high": 0.881
+        },
+        "context_precision": {
+          "n": 14,
+          "mean": 0.2857,
+          "std": 0.1782,
+          "ci_low": 0.1905,
+          "ci_high": 0.381
+        },
+        "max_achievable_precision": {
+          "n": 14,
+          "mean": 0.5,
+          "std": 0.2168,
+          "ci_low": 0.4048,
+          "ci_high": 0.619
+        }
+      },
+      "k=5": {
+        "recall": {
+          "n": 14,
+          "mean": 0.7143,
+          "std": 0.4258,
+          "ci_low": 0.5,
+          "ci_high": 0.9286
+        },
+        "hit_rate": {
+          "n": 14,
+          "mean": 0.7857,
+          "std": 0.4258,
+          "ci_low": 0.5714,
+          "ci_high": 1.0
+        },
+        "mrr": {
+          "n": 14,
+          "mean": 0.6667,
+          "std": 0.4287,
+          "ci_low": 0.4405,
+          "ci_high": 0.881
+        },
+        "ndcg": {
+          "n": 14,
+          "mean": 0.6306,
+          "std": 0.3958,
+          "ci_low": 0.4228,
+          "ci_high": 0.8211
+        },
+        "context_precision": {
+          "n": 14,
+          "mean": 0.2,
+          "std": 0.1359,
+          "ci_low": 0.1286,
+          "ci_high": 0.2714
+        },
+        "max_achievable_precision": {
+          "n": 14,
+          "mean": 0.3286,
+          "std": 0.2164,
+          "ci_low": 0.2429,
+          "ci_high": 0.4429
+        }
+      },
+      "k=10": {
+        "recall": {
+          "n": 14,
+          "mean": 0.9405,
+          "std": 0.2227,
+          "ci_low": 0.8214,
+          "ci_high": 1.0
+        },
+        "hit_rate": {
+          "n": 14,
+          "mean": 1.0,
+          "std": 0.0,
+          "ci_low": 1.0,
+          "ci_high": 1.0
+        },
+        "mrr": {
+          "n": 14,
+          "mean": 0.696,
+          "std": 0.3809,
+          "ci_low": 0.4983,
+          "ci_high": 0.881
+        },
+        "ndcg": {
+          "n": 14,
+          "mean": 0.7115,
+          "std": 0.299,
+          "ci_low": 0.5536,
+          "ci_high": 0.8569
+        },
+        "context_precision": {
+          "n": 14,
+          "mean": 0.1357,
+          "std": 0.0497,
+          "ci_low": 0.1143,
+          "ci_high": 0.1643
+        },
+        "max_achievable_precision": {
+          "n": 14,
+          "mean": 0.1714,
+          "std": 0.1326,
+          "ci_low": 0.1214,
+          "ci_high": 0.25
+        }
+      },
+      "k=20": {
+        "recall": {
+          "n": 14,
+          "mean": 0.9643,
+          "std": 0.1336,
+          "ci_low": 0.8929,
+          "ci_high": 1.0
+        },
+        "hit_rate": {
+          "n": 14,
+          "mean": 1.0,
+          "std": 0.0,
+          "ci_low": 1.0,
+          "ci_high": 1.0
+        },
+        "mrr": {
+          "n": 14,
+          "mean": 0.696,
+          "std": 0.3809,
+          "ci_low": 0.4983,
+          "ci_high": 0.881
+        },
+        "context_precision": {
+          "n": 14,
+          "mean": 0.075,
+          "std": 0.0325,
+          "ci_low": 0.0607,
+          "ci_high": 0.0929
+        },
+        "max_achievable_precision": {
+          "n": 14,
+          "mean": 0.0857,
+          "std": 0.0663,
+          "ci_low": 0.0607,
+          "ci_high": 0.125
+        }
+      }
+    },
+    "retrieval_latency_ms": {
+      "n_samples": 300,
+      "p50": 27.967,
+      "p95": 33.402,
+      "p99": 37.059,
+      "mean": 26.95,
+      "min": 17.046,
+      "max": 43.206
+    },
+    "per_question": [
+      {
+        "id": "q01",
+        "question": "How much weight does operational burden carry in the vector store scoring rubric, and why is it weighted highest?",
+        "expects_fallback": false,
+        "n_relevant": 2,
+        "relevant_chunk_ids": [
+          "c65bbef8dd73b62eae4abd1efd4133b6d7b82ab5ab57dd2225421597bde5c9d2",
+          "cb9246b423a92ef5f0f8d264b6b3c1121700f5130478ffd2659b023bea34290e"
+        ],
+        "retrieved_chunk_ids": [
+          "c65bbef8dd73b62eae4abd1efd4133b6d7b82ab5ab57dd2225421597bde5c9d2",
+          "f7921e59d30dbf374442ecf449b718dd9aa1300f1adb02c55a1fd9650e9a977c",
+          "aa7741ca31538f6cf6a5833868bb72f0d19acfeb51632bc49cf73e2691664caa",
+          "d24bb0312dd617b3827991d78bc48a17bb1e5e610997d6d85839358662027aeb",
+          "824b3f3f4e083c631d4242f1a8e1180cb4916a08423d146ea7a3a69e16d1d5da"
+        ],
+        "retrieved_top1_similarity": 0.541,
+        "retrieved_sources": [
+          "vector_store_selection_guide.md",
+          "cost_model_reference.pdf",
+          "cost_model_reference.pdf",
+          "cost_model_reference.pdf",
+          "vector_store_selection_guide.md"
+        ],
+        "judgeable": true,
+        "metrics": {
+          "hit_rate": 1.0,
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.6131,
+          "context_precision": 0.2,
+          "max_achievable_precision": 0.4
+        }
+      },
+      {
+        "id": "q02",
+        "question": "Why is Qdrant's Python local mode not a substitute for the Qdrant server binary?",
+        "expects_fallback": false,
+        "n_relevant": 1,
+        "relevant_chunk_ids": [
+          "02cfaa1911b0b4b4b4d189ee9eca5fd78b11c36099521a2657c27ff040fa5b0f"
+        ],
+        "retrieved_chunk_ids": [
+          "02cfaa1911b0b4b4b4d189ee9eca5fd78b11c36099521a2657c27ff040fa5b0f",
+          "fb959944247f10f7b52e4f2ad0d000892630674d969534794b63a6b76fb51798",
+          "874156d7be72aaa0b0c438b21d8ce4bf0d411ade62a9db3c308905a7237178a1",
+          "d24bb0312dd617b3827991d78bc48a17bb1e5e610997d6d85839358662027aeb",
+          "d2185701e48fcfea29e2cdac97577b60d0fb712559a2ffb7391e2593307533af"
+        ],
+        "retrieved_top1_similarity": 0.5981,
+        "retrieved_sources": [
+          "vector_store_selection_guide.md",
+          "vector_store_selection_guide.md",
+          "vector_store_selection_guide.md",
+          "cost_model_reference.pdf",
+          "vector_store_selection_guide.md"
+        ],
+        "judgeable": true,
+        "metrics": {
+          "hit_rate": 1.0,
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "context_precision": 0.2,
+          "max_achievable_precision": 0.2
+        }
+      },
+      {
+        "id": "q03",
+        "question": "Under what circumstances should a team adopt a managed vector service instead of an embedded one?",
+        "expects_fallback": false,
+        "n_relevant": 2,
+        "relevant_chunk_ids": [
+          "c0d2b49afb38e73cb696f51a0b66051830564389f1265d333e4c3363b07b2bf3",
+          "da71434e1861fdce6b90154ee81317fdd933082cb05ce184ac87acdb4e31cbb4"
+        ],
+        "retrieved_chunk_ids": [
+          "ecb2f94232cd54b4d0b4b204dc7dc274dc97d10440addb6ffa68b54a07352793",
+          "aa7741ca31538f6cf6a5833868bb72f0d19acfeb51632bc49cf73e2691664caa",
+          "c0d2b49afb38e73cb696f51a0b66051830564389f1265d333e4c3363b07b2bf3",
+          "6e36bcf3f07861fe685069675adf07ca61f4c956bbddce00f03d701c56e74ab4",
+          "f7921e59d30dbf374442ecf449b718dd9aa1300f1adb02c55a1fd9650e9a977c"
+        ],
+        "retrieved_top1_similarity": 0.4647,
+        "retrieved_sources": [
+          "vector_store_selection_guide.md",
+          "cost_model_reference.pdf",
+          "vector_store_selection_guide.md",
+          "cost_model_reference.pdf",
+          "cost_model_reference.pdf"
+        ],
+        "judgeable": true,
+        "metrics": {
+          "hit_rate": 1.0,
+          "recall": 0.5,
+          "mrr": 0.3333,
+          "ndcg": 0.3066,
+          "context_precision": 0.2,
+          "max_achievable_precision": 0.4
+        }
+      },
+      {
+        "id": "q04",
+        "question": "What is the main limitation of each of the six candidate vector engines?",
+        "expects_fallback": false,
+        "n_relevant": 6,
+        "relevant_chunk_ids": [
+          "aedefb47cf958bfeea82cba6966520db4073164ab3e7690203ceb6d6b48518af",
+          "874156d7be72aaa0b0c438b21d8ce4bf0d411ade62a9db3c308905a7237178a1",
+          "02cfaa1911b0b4b4b4d189ee9eca5fd78b11c36099521a2657c27ff040fa5b0f",
+          "913c9298d5432a090af059d5c35abcfc2c2899a345dce53d1e7ea0344a85cdd4",
+          "8b573fdf62b35955073f1e7c6789b31f9f5437fccc63e5040abe41643edf6834",
+          "48e940617a39d57ae298f868d9d1b7bb1a059eb425f5f6bc35fd62152713b208"
+        ],
+        "retrieved_chunk_ids": [
+          "ecb2f94232cd54b4d0b4b204dc7dc274dc97d10440addb6ffa68b54a07352793",
+          "fb959944247f10f7b52e4f2ad0d000892630674d969534794b63a6b76fb51798",
+          "b6aac17acafb27a3eb393b67025b1362d716bad33030f44ca304c14fe13efac7",
+          "cb9246b423a92ef5f0f8d264b6b3c1121700f5130478ffd2659b023bea34290e",
+          "c0d2b49afb38e73cb696f51a0b66051830564389f1265d333e4c3363b07b2bf3"
+        ],
+        "retrieved_top1_similarity": 0.4591,
+        "retrieved_sources": [
+          "vector_store_selection_guide.md",
+          "vector_store_selection_guide.md",
+          "vector_store_selection_guide.md",
+          "vector_store_selection_guide.md",
+          "vector_store_selection_guide.md"
+        ],
+        "judgeable": true,
+        "metrics": {
+          "hit_rate": 0.0,
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "context_precision": 0.0,
+          "max_achievable_precision": 1.0
+        }
+      },
+      {
+        "id": "q05",
+        "question": "What problem does pgvector's hnsw.iterative_scan setting solve?",
+        "expects_fallback": false,
+        "n_relevant": 1,
+        "relevant_chunk_ids": [
+          "fedf641ce5816fbe94eef6715dfcbfe833342944834abf8b3c92506a10609711"
+        ],
+        "retrieved_chunk_ids": [
+          "b6aac17acafb27a3eb393b67025b1362d716bad33030f44ca304c14fe13efac7",
+          "fedf641ce5816fbe94eef6715dfcbfe833342944834abf8b3c92506a10609711",
+          "02cfaa1911b0b4b4b4d189ee9eca5fd78b11c36099521a2657c27ff040fa5b0f",
+          "fb959944247f10f7b52e4f2ad0d000892630674d969534794b63a6b76fb51798",
+          "aedefb47cf958bfeea82cba6966520db4073164ab3e7690203ceb6d6b48518af"
+        ],
+        "retrieved_top1_similarity": 0.4983,
+        "retrieved_sources": [
+          "vector_store_selection_guide.md",
+          "vector_store_selection_guide.md",
+          "vector_store_selection_guide.md",
+          "vector_store_selection_guide.md",
+          "vector_store_selection_guide.md"
+        ],
+        "judgeable": true,
+        "metrics": {
+          "hit_rate": 1.0,
+          "recall": 1.0,
+          "mrr": 0.5,
+          "ndcg": 0.6309,
+          "context_precision": 0.2,
+          "max_achievable_precision": 0.2
+        }
+      },
+      {
+        "id": "q06",
+        "question": "When are Recall@k and Hit Rate the same metric, and when do they diverge?",
+        "expects_fallback": false,
+        "n_relevant": 1,
+        "relevant_chunk_ids": [
+          "01e10a9585d2fa7bdef5cf6d7f2c312b2a001c0847e20f613ec5e4aced2a76df"
+        ],
+        "retrieved_chunk_ids": [
+          "01e10a9585d2fa7bdef5cf6d7f2c312b2a001c0847e20f613ec5e4aced2a76df",
+          "6e7b07812685b504c7c32c97892bedea777296e54c732ad7291c3d274829ff2b",
+          "01dcb7be98b5d1cbfdb29e846f58f5e4f1f7b5d1fb338dac046ed6579b6008f6",
+          "9e796f9382be33cf4936a0b9f91912a3d10005f83e098f9bf483fc62cdf67cf5",
+          "c97646f04a4766e5f9b96836302a78915305b82a251b1151d1fef1581adf0a60"
+        ],
+        "retrieved_top1_similarity": 0.6618,
+        "retrieved_sources": [
+          "rag_evaluation_methodology.html",
+          "rag_evaluation_methodology.html",
+          "rag_evaluation_methodology.html",
+          "rag_evaluation_methodology.html",
+          "rag_evaluation_methodology.html"
+        ],
+        "judgeable": true,
+        "metrics": {
+          "hit_rate": 1.0,
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "context_precision": 0.2,
+          "max_achievable_precision": 0.2
+        }
+      },
+      {
+        "id": "q07",
+        "question": "How must IDCG@k be truncated, and what goes wrong if it is not?",
+        "expects_fallback": false,
+        "n_relevant": 1,
+        "relevant_chunk_ids": [
+          "1a92022a99fbcb7d14e10526135b439839ea68d6becc14e0da7ad7640d6949e8"
+        ],
+        "retrieved_chunk_ids": [
+          "adf6cff1fe9048635ff12e398dc100f1f4eaed2aa467692d104643f34aec4cfe",
+          "88b9a80736ce8bd023d56b0f116ea1abab17498d0599d0c0ef0d519d1d6903cd",
+          "e25a3dc92278986bc2211c73d14652b7ad0470cf68f8997656bd04a4b5691687",
+          "6e8f6e835a8698cf938acb6d4006a91df5777bcbbe2b5ac851dfc201b29c22d6",
+          "e7d1fbfa0eecfd9078198fdc3691bb843bfa97a268f60b30fae7f4031c09ba1f"
+        ],
+        "retrieved_top1_similarity": 0.3965,
+        "retrieved_sources": [
+          "ingestion_operations_notes.md",
+          "ingestion_operations_notes.md",
+          "ingestion_operations_notes.md",
+          "ingestion_operations_notes.md",
+          "ingestion_operations_notes.md"
+        ],
+        "judgeable": true,
+        "metrics": {
+          "hit_rate": 0.0,
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "context_precision": 0.0,
+          "max_achievable_precision": 0.2
+        }
+      },
+      {
+        "id": "q08",
+        "question": "Why should the rationale field come before the score in an LLM judge's output schema?",
+        "expects_fallback": false,
+        "n_relevant": 2,
+        "relevant_chunk_ids": [
+          "1c964d7d09e7d2e6369b865806b7f0a1e62b8f902bb1253d71adb96c345be042",
+          "423750928bf759e4addfa0b5bdb5d6e032b66efc4441eaa6ff96d56951cc47b4"
+        ],
+        "retrieved_chunk_ids": [
+          "1c964d7d09e7d2e6369b865806b7f0a1e62b8f902bb1253d71adb96c345be042",
+          "ba1c42ac9e279b154c643eab5cbe7bea29b28adf515f051108d0b12f2b4d3bc8",
+          "6e7b07812685b504c7c32c97892bedea777296e54c732ad7291c3d274829ff2b",
+          "423750928bf759e4addfa0b5bdb5d6e032b66efc4441eaa6ff96d56951cc47b4",
+          "c97646f04a4766e5f9b96836302a78915305b82a251b1151d1fef1581adf0a60"
+        ],
+        "retrieved_top1_similarity": 0.7587,
+        "retrieved_sources": [
+          "rag_evaluation_methodology.html",
+          "rag_evaluation_methodology.html",
+          "rag_evaluation_methodology.html",
+          "rag_evaluation_methodology.html",
+          "rag_evaluation_methodology.html"
+        ],
+        "judgeable": true,
+        "metrics": {
+          "hit_rate": 1.0,
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8772,
+          "context_precision": 0.4,
+          "max_achievable_precision": 0.4
+        }
+      },
+      {
+        "id": "q09",
+        "question": "How are evaluation questions with no relevant chunks handled in the retrieval metrics?",
+        "expects_fallback": false,
+        "n_relevant": 1,
+        "relevant_chunk_ids": [
+          "6e7b07812685b504c7c32c97892bedea777296e54c732ad7291c3d274829ff2b"
+        ],
+        "retrieved_chunk_ids": [
+          "01dcb7be98b5d1cbfdb29e846f58f5e4f1f7b5d1fb338dac046ed6579b6008f6",
+          "2f121a71dca7f3b4ac72ab90203a342ad13a646ded581c0df072dd772df0f8a9",
+          "24f6184d074264f03e6027814a956067cf0d3c2219226550f6bc66881baba0db",
+          "7104f7a778094e8f78ea0d782b05b94dc6890fc70bd537e8233671472b5a9ec0",
+          "219b1cd4ce70cb7042bafd8b9b2052726805a48c057a9e697336a194c9eafa7b"
+        ],
+        "retrieved_top1_similarity": 0.5972,
+        "retrieved_sources": [
+          "rag_evaluation_methodology.html",
+          "rag_evaluation_methodology.html",
+          "rag_evaluation_methodology.html",
+          "rag_evaluation_methodology.html",
+          "rag_evaluation_methodology.html"
+        ],
+        "judgeable": true,
+        "metrics": {
+          "hit_rate": 0.0,
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "context_precision": 0.0,
+          "max_achievable_precision": 0.2
+        }
+      },
+      {
+        "id": "q10",
+        "question": "What is the maximum achievable context precision when a query has one relevant chunk and k is five?",
+        "expects_fallback": false,
+        "n_relevant": 1,
+        "relevant_chunk_ids": [
+          "b62bc3cd6d64862fc821267178e8a4ae5713b5c8f16a9ae33a17fdd8353af307"
+        ],
+        "retrieved_chunk_ids": [
+          "7b3ee9b844a18aa5b777265bc19923f43bd259d46dc0cda7e42dd3f4805f6ac6",
+          "b62bc3cd6d64862fc821267178e8a4ae5713b5c8f16a9ae33a17fdd8353af307",
+          "1a92022a99fbcb7d14e10526135b439839ea68d6becc14e0da7ad7640d6949e8",
+          "6e7b07812685b504c7c32c97892bedea777296e54c732ad7291c3d274829ff2b",
+          "7104f7a778094e8f78ea0d782b05b94dc6890fc70bd537e8233671472b5a9ec0"
+        ],
+        "retrieved_top1_similarity": 0.6288,
+        "retrieved_sources": [
+          "rag_evaluation_methodology.html",
+          "rag_evaluation_methodology.html",
+          "rag_evaluation_methodology.html",
+          "rag_evaluation_methodology.html",
+          "rag_evaluation_methodology.html"
+        ],
+        "judgeable": true,
+        "metrics": {
+          "hit_rate": 1.0,
+          "recall": 1.0,
+          "mrr": 0.5,
+          "ndcg": 0.6309,
+          "context_precision": 0.2,
+          "max_achievable_precision": 0.2
+        }
+      },
+      {
+        "id": "q11",
+        "question": "Why is reading the existing chunk IDs and then appending an unsafe way to achieve idempotency?",
+        "expects_fallback": false,
+        "n_relevant": 2,
+        "relevant_chunk_ids": [
+          "f821a4e4da7a33b4beb0de2a7bbcc4288d933d63afd95491b1e5e8cce7fe0f2f",
+          "e25a3dc92278986bc2211c73d14652b7ad0470cf68f8997656bd04a4b5691687"
+        ],
+        "retrieved_chunk_ids": [
+          "f821a4e4da7a33b4beb0de2a7bbcc4288d933d63afd95491b1e5e8cce7fe0f2f",
+          "adf6cff1fe9048635ff12e398dc100f1f4eaed2aa467692d104643f34aec4cfe",
+          "e25a3dc92278986bc2211c73d14652b7ad0470cf68f8997656bd04a4b5691687",
+          "6e8f6e835a8698cf938acb6d4006a91df5777bcbbe2b5ac851dfc201b29c22d6",
+          "e7d1fbfa0eecfd9078198fdc3691bb843bfa97a268f60b30fae7f4031c09ba1f"
+        ],
+        "retrieved_top1_similarity": 0.6413,
+        "retrieved_sources": [
+          "ingestion_operations_notes.md",
+          "ingestion_operations_notes.md",
+          "ingestion_operations_notes.md",
+          "ingestion_operations_notes.md",
+          "ingestion_operations_notes.md"
+        ],
+        "judgeable": true,
+        "metrics": {
+          "hit_rate": 1.0,
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.9197,
+          "context_precision": 0.4,
+          "max_achievable_precision": 0.4
+        }
+      },
+      {
+        "id": "q12",
+        "question": "Why must stale-chunk cleanup be keyed on the source name rather than on the content hash?",
+        "expects_fallback": false,
+        "n_relevant": 1,
+        "relevant_chunk_ids": [
+          "7efbf68853f042e3d19dc529853f565651960979294c265199646f1c36448f74"
+        ],
+        "retrieved_chunk_ids": [
+          "7efbf68853f042e3d19dc529853f565651960979294c265199646f1c36448f74",
+          "e25a3dc92278986bc2211c73d14652b7ad0470cf68f8997656bd04a4b5691687",
+          "e7d1fbfa0eecfd9078198fdc3691bb843bfa97a268f60b30fae7f4031c09ba1f",
+          "adf6cff1fe9048635ff12e398dc100f1f4eaed2aa467692d104643f34aec4cfe",
+          "faade79b6d0d37003dfb3bfb174714172614c7b6f4add9018afaf62381cd9dd4"
+        ],
+        "retrieved_top1_similarity": 0.6125,
+        "retrieved_sources": [
+          "ingestion_operations_notes.md",
+          "ingestion_operations_notes.md",
+          "ingestion_operations_notes.md",
+          "ingestion_operations_notes.md",
+          "ingestion_operations_notes.md"
+        ],
+        "judgeable": true,
+        "metrics": {
+          "hit_rate": 1.0,
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "context_precision": 0.2,
+          "max_achievable_precision": 0.2
+        }
+      },
+      {
+        "id": "q13",
+        "question": "At roughly what chunk size does the all-MiniLM-L6-v2 embedding model start silently truncating input?",
+        "expects_fallback": false,
+        "n_relevant": 1,
+        "relevant_chunk_ids": [
+          "88b9a80736ce8bd023d56b0f116ea1abab17498d0599d0c0ef0d519d1d6903cd"
+        ],
+        "retrieved_chunk_ids": [
+          "88b9a80736ce8bd023d56b0f116ea1abab17498d0599d0c0ef0d519d1d6903cd",
+          "faade79b6d0d37003dfb3bfb174714172614c7b6f4add9018afaf62381cd9dd4",
+          "1f1abf1bdaa4d89601c72c4e80a3d5c2a38b277e30f28d897de59a903c66dd99",
+          "d24bb0312dd617b3827991d78bc48a17bb1e5e610997d6d85839358662027aeb",
+          "78e782c25cfd270550df8267bd132cbad35d0a21d02997cf2b684524c31abed5"
+        ],
+        "retrieved_top1_similarity": 0.7728,
+        "retrieved_sources": [
+          "ingestion_operations_notes.md",
+          "ingestion_operations_notes.md",
+          "ingestion_operations_notes.md",
+          "cost_model_reference.pdf",
+          "cost_model_reference.pdf"
+        ],
+        "judgeable": true,
+        "metrics": {
+          "hit_rate": 1.0,
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "context_precision": 0.2,
+          "max_achievable_precision": 0.2
+        }
+      },
+      {
+        "id": "q14",
+        "question": "Why is marginal compute not zero for an embedded vector store at ten million vectors?",
+        "expects_fallback": false,
+        "n_relevant": 2,
+        "relevant_chunk_ids": [
+          "e886c6e01662e68ef7d1d0a91ff801d88f1b763e1a129ffec5edcf29805c134b",
+          "aa7741ca31538f6cf6a5833868bb72f0d19acfeb51632bc49cf73e2691664caa"
+        ],
+        "retrieved_chunk_ids": [
+          "e886c6e01662e68ef7d1d0a91ff801d88f1b763e1a129ffec5edcf29805c134b",
+          "d24bb0312dd617b3827991d78bc48a17bb1e5e610997d6d85839358662027aeb",
+          "78e782c25cfd270550df8267bd132cbad35d0a21d02997cf2b684524c31abed5",
+          "b249aa92466d2ee24088d06c35d165d69e2e4ef962a2fcee7f0ffd9a4861fa13",
+          "aa7741ca31538f6cf6a5833868bb72f0d19acfeb51632bc49cf73e2691664caa"
+        ],
+        "retrieved_top1_similarity": 0.5562,
+        "retrieved_sources": [
+          "cost_model_reference.pdf",
+          "cost_model_reference.pdf",
+          "cost_model_reference.pdf",
+          "cost_model_reference.pdf",
+          "cost_model_reference.pdf"
+        ],
+        "judgeable": true,
+        "metrics": {
+          "hit_rate": 1.0,
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8503,
+          "context_precision": 0.4,
+          "max_achievable_precision": 0.4
+        }
+      },
+      {
+        "id": "q15",
+        "question": "What is the average resting heart rate of an adult blue whale in beats per minute?",
+        "expects_fallback": true,
+        "n_relevant": 0,
+        "relevant_chunk_ids": [],
+        "retrieved_chunk_ids": [
+          "4091539e460ed4f6d92ebadc06f0e1575ce5dfc8e32d9ed41ef7b5b867b49abf",
+          "9e796f9382be33cf4936a0b9f91912a3d10005f83e098f9bf483fc62cdf67cf5",
+          "6be3b0b0c7eeb5333ccb54b2c4efa2e9c0812a342cd4760e5f4d024a419af15e",
+          "b62bc3cd6d64862fc821267178e8a4ae5713b5c8f16a9ae33a17fdd8353af307",
+          "02cfaa1911b0b4b4b4d189ee9eca5fd78b11c36099521a2657c27ff040fa5b0f"
+        ],
+        "retrieved_top1_similarity": 0.2111,
+        "retrieved_sources": [
+          "cost_model_reference.pdf",
+          "rag_evaluation_methodology.html",
+          "vector_store_selection_guide.md",
+          "rag_evaluation_methodology.html",
+          "vector_store_selection_guide.md"
+        ],
+        "judgeable": false,
+        "excluded_reason": "empty relevant set (out-of-corpus probe)"
+      }
+    ]
+  },
+  "meta": {
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "embedding_dim": 384,
+    "chunking": {
+      "chunk_size": 500,
+      "chunk_overlap": 50
+    },
+    "vector_backend": "lancedb",
+    "similarity_threshold": 0.3,
+    "corpus_chunk_count": 72,
+    "retrieval_run_at": "2026-07-27T22:59:40+0530",
+    "answer_run_at": "2026-07-27T22:27:44+0530",
+    "judge_model": "gemini/gemini-3.5-flash",
+    "generation_model": "groq/openai/gpt-oss-120b",
+    "generation_temperature": 0.0
+  },
+  "answer": {
+    "judge_model": "gemini/gemini-3.5-flash",
+    "generation_model": "groq/openai/gpt-oss-120b",
+    "top_k": 5,
+    "n_questions": 15,
+    "n_scored": 2,
+    "n_fallback_questions": 1,
+    "n_judge_errors": 1,
+    "scale": "1-5 integer, per criterion",
+    "faithfulness": {
+      "n": 2,
+      "mean": 4.0,
+      "std": 1.4142,
+      "ci_low": 3.0,
+      "ci_high": 5.0
+    },
+    "answer_relevance": {
+      "n": 2,
+      "mean": 4.0,
+      "std": 1.4142,
+      "ci_low": 3.0,
+      "ci_high": 5.0
+    },
+    "local_fallback_scores": {
+      "n": 9,
+      "instrument": "local-embedding",
+      "policy": "Produced by eval/local_judge.py when every provider in the judge chain was unreachable. Reported separately and never pooled with LLM-judge scores: cosine-similarity groundedness detects unsupported content, not contradiction, so it is a weaker instrument measuring a narrower property.",
+      "faithfulness": {
+        "n": 9,
+        "mean": 4.0,
+        "std": 0.5,
+        "ci_low": 3.6667,
+        "ci_high": 4.3333
+      },
+      "answer_relevance": {
+        "n": 9,
+        "mean": 3.8889,
+        "std": 0.3333,
+        "ci_low": 3.6667,
+        "ci_high": 4.0
+      }
+    },
+    "false_refusal_imputation": {
+      "n": 2,
+      "policy": "A refusal of an answerable question is assigned faithfulness=5, relevance=1 by rule rather than by the judge. Excluded from the measured means above and reported here so the imputation is visible instead of blended in.",
+      "faithfulness_including_imputed": {
+        "n": 4,
+        "mean": 4.5,
+        "std": 1.0,
+        "ci_low": 3.5,
+        "ci_high": 5.0
+      },
+      "answer_relevance_including_imputed": {
+        "n": 4,
+        "mean": 2.5,
+        "std": 1.9149,
+        "ci_low": 1.0,
+        "ci_high": 4.0
+      }
+    },
+    "fallback_correctness": {
+      "n": 1,
+      "n_correct": 1,
+      "rate": 1.0,
+      "definition": "Exact refusal string returned AND zero completion tokens billed (generation skipped entirely)."
+    },
+    "false_refusals": 2,
+    "tokens": {
+      "prompt": 15824,
+      "completion": 3128,
+      "total": 18952,
+      "note": "Summed across generation and judging, including every failed attempt and JSON repair, because billing counts those too."
+    },
+    "generation_latency_ms": {
+      "n": 14,
+      "p50": 787.062,
+      "p95": 4146.92,
+      "mean": 1393.817
+    },
+    "per_question": [
+      {
+        "id": "q01",
+        "question": "How much weight does operational burden carry in the vector store scoring rubric, and why is it weighted highest?",
+        "expects_fallback": false,
+        "answer": "Operational burden carries a weight of\u202f30\u202f% in the vector\u2011store scoring rubric\u202f[Doc: vector_store_selection_guide.md, Chunk: c65bbef8dd73b62eae4abd1efd4133b6d7b82ab5ab57dd2225421597bde5c9d2]. \n\nI do not have sufficient information in the provided context to answer this question.",
+        "fallback_triggered": false,
+        "chunk_count": 5,
+        "top_similarity": 0.5409877896308899,
+        "citations": [
+          {
+            "source": "vector_store_selection_guide.md",
+            "chunk_id": "c65bbef8dd73b62eae4abd1efd4133b6d7b82ab5ab57dd2225421597bde5c9d2"
+          }
+        ],
+        "unverified_citation_count": 0,
+        "generation_prompt_tokens": 994,
+        "generation_completion_tokens": 158,
+        "retrieval_latency_ms": 89.317,
+        "generation_latency_ms": 1100.724,
+        "scored": true,
+        "scored_under": "faithfulness_relevance",
+        "false_refusal": false,
+        "faithfulness_score": 3,
+        "faithfulness_rationale": "The answer states that operational burden carries a weight of 30% and cites the context. The context contains the exact line: \"| Operational burden | 30% | Processes to run, accounts to hold, upgrades to schedule |\" confirming the weight claim. The answer also claims \"I do not have sufficient information in the provided context to answer this question,\" which is contradicted by the presence of that weight information and the lack of any statement about why it is weighted highest. Thus the second claim is unsupported.",
+        "relevance_score": 3,
+        "relevance_rationale": "The question asks for two pieces of information: the weight of operational burden and the reason it is weighted highest. The answer provides the weight (30%) but does not address the reason for the highest weighting, instead stating insufficient information. Therefore it only partially satisfies the information need.",
+        "unsupported_claims": [
+          "I do not have sufficient information in the provided context to answer this question."
+        ],
+        "attempts": 1,
+        "repair_attempts": 0,
+        "prompt_tokens": 1625,
+        "completion_tokens": 429,
+        "cache_hit": false,
+        "error": null
+      },
+      {
+        "id": "q02",
+        "question": "Why is Qdrant's Python local mode not a substitute for the Qdrant server binary?",
+        "expects_fallback": false,
+        "answer": "Qdrant\u2019s Python client \u201clocal mode\u201d does not include the HNSW index that the full Qdrant server provides; it simply performs a brute\u2011force scan of the vectors. It is intended only for development, testing, and demonstrations on relatively small datasets (\u2248\u202f20\u202f000 points). Consequently, any performance or scaling claims made for Qdrant apply to the self\u2011hosted server binary (or managed service), not to the local\u2011mode client, which is a fundamentally different system.\u202f[Doc: vector_store_selection_guide.md, Chunk: 02cfaa1911b0b4b4b4d189ee9eca5fd78b11c36099521a2657c27ff040fa5b0f]",
+        "fallback_triggered": false,
+        "chunk_count": 5,
+        "top_similarity": 0.5981338620185852,
+        "citations": [
+          {
+            "source": "vector_store_selection_guide.md",
+            "chunk_id": "02cfaa1911b0b4b4b4d189ee9eca5fd78b11c36099521a2657c27ff040fa5b0f"
+          }
+        ],
+        "unverified_citation_count": 0,
+        "generation_prompt_tokens": 970,
+        "generation_completion_tokens": 198,
+        "retrieval_latency_ms": 41.401,
+        "generation_latency_ms": 660.845,
+        "scored": true,
+        "scored_under": "faithfulness_relevance",
+        "false_refusal": false,
+        "faithfulness_score": 5,
+        "faithfulness_rationale": "The answer states that local mode contains no HNSW index and uses brute\u2011force scan, is for development/testing/demos on ~20k points, and that performance/scaling claims apply to the server binary. All these claims are directly supported by the context: \"that mode contains no HNSW index at all. It performs a brute-force scan and is documented for development, testing, and demonstrations at approximately twenty thousand points. Every performance and scaling claim about Qdrant applies to the server binary...\" (vector_store_selection_guide.md, Chunk: 02cfaa1911b0b4b4b4d189ee9eca5fd78b11c36099521a2657c27ff040fa5b0f).",
+        "relevance_score": 5,
+        "relevance_rationale": "The question asks why the Python local mode is not a substitute for the Qdrant server binary. The answer explains the lack of HNSW index, the brute\u2011force nature, its limited use case, and that performance claims pertain to the server binary, directly addressing the why. Hence it fully satisfies the information need.",
+        "unsupported_claims": [],
+        "attempts": 1,
+        "repair_attempts": 0,
+        "prompt_tokens": 1666,
+        "completion_tokens": 470,
+        "cache_hit": false,
+        "error": null
+      },
+      {
+        "id": "q03",
+        "question": "Under what circumstances should a team adopt a managed vector service instead of an embedded one?",
+        "expects_fallback": false,
+        "answer": "A team should adopt a managed vector service instead of an embedded one whenever **any** of the following conditions is true:\n\n1. **The corpus is larger than what a single node can index and keep in its working set.**  \n2. **The workload needs multi\u2011region high availability or a compliance guarantee that would otherwise require custom engineering.**  \n3. **Write concurrency from multiple independent services exceeds what a single\u2011writer ingestion path can handle.**  \n\nThese three criteria are listed in the vector\u2011store selection guide as the situations that justify choosing a managed vector service over an embedded solution.  \n\n[Doc: vector_store_selection_guide.md, Chunk: c0d2b49afb38e73cb696f51a0b66051830564389f1265d333e4c3363b07b2bf3]",
+        "fallback_triggered": false,
+        "chunk_count": 5,
+        "top_similarity": 0.46472692489624023,
+        "citations": [
+          {
+            "source": "vector_store_selection_guide.md",
+            "chunk_id": "c0d2b49afb38e73cb696f51a0b66051830564389f1265d333e4c3363b07b2bf3"
+          }
+        ],
+        "unverified_citation_count": 0,
+        "generation_prompt_tokens": 933,
+        "generation_completion_tokens": 241,
+        "retrieval_latency_ms": 43.923,
+        "generation_latency_ms": 762.781,
+        "scored": true,
+        "scored_under": "faithfulness_relevance",
+        "false_refusal": false,
+        "faithfulness_score": 3,
+        "faithfulness_rationale": "Mean best-match similarity between each of 6 answer sentence(s) and the retrieved context is 0.612; the least-supported sentence scores 0.443. Similarity detects unsupported content, not contradiction.",
+        "relevance_score": 4,
+        "relevance_rationale": "Question-answer cosine similarity 0.688.",
+        "instrument": "local-embedding",
+        "measured": {
+          "groundedness": 0.6124,
+          "weakest_sentence_support": 0.4427,
+          "relevance": 0.6876,
+          "n_answer_sentences": 6.0
+        },
+        "degraded": "every judge in the chain was unavailable (gemini/gemini-3.5-flash: judge_call_failed: gemini/gemini-3.5-flash failed after 3 attempt(s): litellm.RateLimitError: litellm.RateLimitError: geminiException - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 39.766075977s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\n        \"links\": [\n          {\n            \"description\": \"Learn more about Gemini API quotas\",\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.QuotaFailure\",\n        \"violations\": [\n          {\n            \"quotaMetric\": \"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\n            \"quotaId\": \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\n            \"quotaDimensions\": {\n              \"location\": \"global\",\n              \"model\": \"gemini-3.5-flash\"\n            },\n            \"quotaValue\": \"20\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.RetryInfo\",\n        \"retryDelay\": \"39s\"\n      }\n    ]\n  }\n}\n | groq/openai/gpt-oss-120b: judge_call_failed: groq/openai/gpt-oss-120b failed after 3 attempt(s): litellm.RateLimitError: RateLimitError: GroqException - {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kwcch3qde07bq3zn972r7mph` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6176, Requested 2073. Please try again in 1.8675s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n)"
+      },
+      {
+        "id": "q04",
+        "question": "What is the main limitation of each of the six candidate vector engines?",
+        "expects_fallback": false,
+        "answer": "I do not have sufficient information in the provided context to answer this question.",
+        "fallback_triggered": true,
+        "chunk_count": 5,
+        "top_similarity": 0.45908570289611816,
+        "citations": [],
+        "unverified_citation_count": 0,
+        "generation_prompt_tokens": 903,
+        "generation_completion_tokens": 62,
+        "retrieval_latency_ms": 38.933,
+        "generation_latency_ms": 515.197,
+        "scored": true,
+        "scored_under": "false_refusal_imputed",
+        "faithfulness_score": 5,
+        "relevance_score": 1,
+        "judge_note": "System refused an answerable question. Scored without calling the judge: a refusal is trivially faithful and wholly irrelevant. Counted, not excluded -- but kept out of the measured means, because a rule-assigned score is not a measurement.",
+        "false_refusal": true
+      },
+      {
+        "id": "q05",
+        "question": "What problem does pgvector's hnsw.iterative_scan setting solve?",
+        "expects_fallback": false,
+        "answer": "pgvector\u2019s\u202f`hnsw.iterative_scan` setting was added to fix the problem of **approximate\u2011index over\u2011filtering** that occurs when a vector search is combined with a very selective `WHERE` clause. Without this setting, the HNSW index is traversed only once and the metadata filter is applied afterward, which can cause the query to return far fewer rows than requested. The iterative\u2011scan option addresses this by preventing that over\u2011filtering.\u3010Doc: vector_store_selection_guide.md, Chunk: fedf641ce5816fbe94eef6715dfcbfe833342944834abf8b3c92506a10609711\u3011",
+        "fallback_triggered": false,
+        "chunk_count": 5,
+        "top_similarity": 0.4983276128768921,
+        "citations": [],
+        "unverified_citation_count": 0,
+        "generation_prompt_tokens": 904,
+        "generation_completion_tokens": 242,
+        "retrieval_latency_ms": 34.47,
+        "generation_latency_ms": 1947.249,
+        "scored": true,
+        "scored_under": "faithfulness_relevance",
+        "false_refusal": false,
+        "faithfulness_score": 4,
+        "faithfulness_rationale": "Mean best-match similarity between each of 3 answer sentence(s) and the retrieved context is 0.784; the least-supported sentence scores 0.695. Similarity detects unsupported content, not contradiction.",
+        "relevance_score": 4,
+        "relevance_rationale": "Question-answer cosine similarity 0.690.",
+        "instrument": "local-embedding",
+        "measured": {
+          "groundedness": 0.7843,
+          "weakest_sentence_support": 0.6946,
+          "relevance": 0.6903,
+          "n_answer_sentences": 3.0
+        },
+        "degraded": "every judge in the chain was unavailable (gemini/gemini-3.5-flash: judge_call_failed: gemini/gemini-3.5-flash failed after 3 attempt(s): litellm.RateLimitError: litellm.RateLimitError: geminiException - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 29.788031201s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\n        \"links\": [\n          {\n            \"description\": \"Learn more about Gemini API quotas\",\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.QuotaFailure\",\n        \"violations\": [\n          {\n            \"quotaMetric\": \"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\n            \"quotaId\": \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\n            \"quotaDimensions\": {\n              \"location\": \"global\",\n              \"model\": \"gemini-3.5-flash\"\n            },\n            \"quotaValue\": \"20\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.RetryInfo\",\n        \"retryDelay\": \"29s\"\n      }\n    ]\n  }\n}\n | groq/openai/gpt-oss-120b: judge_call_failed: groq/openai/gpt-oss-120b failed after 3 attempt(s): litellm.RateLimitError: RateLimitError: GroqException - {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kwcch3qde07bq3zn972r7mph` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6952, Requested 2051. Please try again in 7.522499999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n)"
+      },
+      {
+        "id": "q06",
+        "question": "When are Recall@k and Hit Rate the same metric, and when do they diverge?",
+        "expects_fallback": false,
+        "answer": "Recall@k and Hit Rate coincide only when every query has exactly one relevant chunk. As soon as any query has two or more relevant chunks, the two metrics diverge, and reporting Hit Rate under the label Recall@k inflates the apparent score\u3010Doc: rag_evaluation_methodology.html, Chunk: 01e10a9585d2fa7bdef5cf6d7f2c312b2a001c0847e20f613ec5e4aced2a76df\u3011.",
+        "fallback_triggered": false,
+        "chunk_count": 5,
+        "top_similarity": 0.6618256568908691,
+        "citations": [],
+        "unverified_citation_count": 0,
+        "generation_prompt_tokens": 1078,
+        "generation_completion_tokens": 151,
+        "retrieval_latency_ms": 31.498,
+        "generation_latency_ms": 3825.794,
+        "scored": true,
+        "scored_under": "faithfulness_relevance",
+        "false_refusal": false,
+        "faithfulness_score": 5,
+        "faithfulness_rationale": "Mean best-match similarity between each of 2 answer sentence(s) and the retrieved context is 0.934; the least-supported sentence scores 0.867. Similarity detects unsupported content, not contradiction.",
+        "relevance_score": 4,
+        "relevance_rationale": "Question-answer cosine similarity 0.780.",
+        "instrument": "local-embedding",
+        "measured": {
+          "groundedness": 0.9337,
+          "weakest_sentence_support": 0.8674,
+          "relevance": 0.7804,
+          "n_answer_sentences": 2.0
+        },
+        "degraded": "every judge in the chain was unavailable (gemini/gemini-3.5-flash: judge_call_failed: gemini/gemini-3.5-flash failed after 3 attempt(s): litellm.RateLimitError: litellm.RateLimitError: geminiException - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 18.177662457s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\n        \"links\": [\n          {\n            \"description\": \"Learn more about Gemini API quotas\",\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.QuotaFailure\",\n        \"violations\": [\n          {\n            \"quotaMetric\": \"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\n            \"quotaId\": \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\n            \"quotaDimensions\": {\n              \"location\": \"global\",\n              \"model\": \"gemini-3.5-flash\"\n            },\n            \"quotaValue\": \"20\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.RetryInfo\",\n        \"retryDelay\": \"18s\"\n      }\n    ]\n  }\n}\n | groq/openai/gpt-oss-120b: judge_call_failed: groq/openai/gpt-oss-120b failed after 3 attempt(s): litellm.RateLimitError: RateLimitError: GroqException - {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kwcch3qde07bq3zn972r7mph` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6641, Requested 2187. Please try again in 6.21s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n)"
+      },
+      {
+        "id": "q07",
+        "question": "How must IDCG@k be truncated, and what goes wrong if it is not?",
+        "expects_fallback": false,
+        "answer": "I do not have sufficient information in the provided context to answer this question.",
+        "fallback_triggered": true,
+        "chunk_count": 5,
+        "top_similarity": 0.3964865207672119,
+        "citations": [],
+        "unverified_citation_count": 0,
+        "generation_prompt_tokens": 948,
+        "generation_completion_tokens": 49,
+        "retrieval_latency_ms": 48.389,
+        "generation_latency_ms": 534.585,
+        "scored": true,
+        "scored_under": "false_refusal_imputed",
+        "faithfulness_score": 5,
+        "relevance_score": 1,
+        "judge_note": "System refused an answerable question. Scored without calling the judge: a refusal is trivially faithful and wholly irrelevant. Counted, not excluded -- but kept out of the measured means, because a rule-assigned score is not a measurement.",
+        "false_refusal": true
+      },
+      {
+        "id": "q08",
+        "question": "Why should the rationale field come before the score in an LLM judge's output schema?",
+        "expects_fallback": false,
+        "error": "generation_failed: groq/openai/gpt-oss-120b failed after 3 attempt(s): litellm.RateLimitError: RateLimitError: GroqException - {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kwcch3qde07bq3zn972r7mph` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7051, Requested 1227. Please try again in 2.085s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n",
+        "scored": false
+      },
+      {
+        "id": "q09",
+        "question": "How are evaluation questions with no relevant chunks handled in the retrieval metrics?",
+        "expects_fallback": false,
+        "answer": "Evaluation questions that deliberately have no relevant chunks (i.e., an empty relevant set) are treated as \u201cunjudgeable\u201d queries. For such queries, metrics like Recall@k become undefined because they would involve a division by zero (zero relevant items divided by\u202fk). This situation is explicitly noted as a zero\u2011divided\u2011by\u2011zero expression in the evaluation methodology\u3010Doc: rag_evaluation_methodology.html, Chunk: 219b1cd4ce70cb7042bafd8b9b2052726805a48c057a9e697336a194c9eafa7b\u3011.",
+        "fallback_triggered": false,
+        "chunk_count": 5,
+        "top_similarity": 0.5972055792808533,
+        "citations": [],
+        "unverified_citation_count": 0,
+        "generation_prompt_tokens": 944,
+        "generation_completion_tokens": 172,
+        "retrieval_latency_ms": 34.764,
+        "generation_latency_ms": 4146.92,
+        "scored": true,
+        "scored_under": "faithfulness_relevance",
+        "false_refusal": false,
+        "faithfulness_score": 4,
+        "faithfulness_rationale": "Mean best-match similarity between each of 3 answer sentence(s) and the retrieved context is 0.658; the least-supported sentence scores 0.612. Similarity detects unsupported content, not contradiction.",
+        "relevance_score": 4,
+        "relevance_rationale": "Question-answer cosine similarity 0.705.",
+        "instrument": "local-embedding",
+        "measured": {
+          "groundedness": 0.6579,
+          "weakest_sentence_support": 0.6119,
+          "relevance": 0.7053,
+          "n_answer_sentences": 3.0
+        },
+        "degraded": "every judge in the chain was unavailable (gemini/gemini-3.5-flash: judge_call_failed: gemini/gemini-3.5-flash failed after 3 attempt(s): litellm.RateLimitError: litellm.RateLimitError: geminiException - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 2.72407977s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\n        \"links\": [\n          {\n            \"description\": \"Learn more about Gemini API quotas\",\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.QuotaFailure\",\n        \"violations\": [\n          {\n            \"quotaMetric\": \"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\n            \"quotaId\": \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\n            \"quotaDimensions\": {\n              \"location\": \"global\",\n              \"model\": \"gemini-3.5-flash\"\n            },\n            \"quotaValue\": \"20\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.RetryInfo\",\n        \"retryDelay\": \"2s\"\n      }\n    ]\n  }\n}\n | groq/openai/gpt-oss-120b: judge_call_failed: groq/openai/gpt-oss-120b failed after 3 attempt(s): litellm.RateLimitError: RateLimitError: GroqException - {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kwcch3qde07bq3zn972r7mph` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6693, Requested 2037. Please try again in 5.475s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n)"
+      },
+      {
+        "id": "q10",
+        "question": "What is the maximum achievable context precision when a query has one relevant chunk and k is five?",
+        "expects_fallback": false,
+        "answer": "The maximum achievable context precision in that case is\u202f0.20\u202f[Doc: rag_evaluation_methodology.html, Chunk: b62bc3cd6d64862fc821267178e8a4ae5713b5c8f16a9ae33a17fdd8353af307].",
+        "fallback_triggered": false,
+        "chunk_count": 5,
+        "top_similarity": 0.6288409233093262,
+        "citations": [
+          {
+            "source": "rag_evaluation_methodology.html",
+            "chunk_id": "b62bc3cd6d64862fc821267178e8a4ae5713b5c8f16a9ae33a17fdd8353af307"
+          }
+        ],
+        "unverified_citation_count": 0,
+        "generation_prompt_tokens": 1026,
+        "generation_completion_tokens": 101,
+        "retrieval_latency_ms": 29.557,
+        "generation_latency_ms": 1692.642,
+        "scored": true,
+        "scored_under": "faithfulness_relevance",
+        "false_refusal": false,
+        "faithfulness_score": 4,
+        "faithfulness_rationale": "Mean best-match similarity between each of 1 answer sentence(s) and the retrieved context is 0.707; the least-supported sentence scores 0.707. Similarity detects unsupported content, not contradiction.",
+        "relevance_score": 3,
+        "relevance_rationale": "Question-answer cosine similarity 0.633.",
+        "instrument": "local-embedding",
+        "measured": {
+          "groundedness": 0.7071,
+          "weakest_sentence_support": 0.7071,
+          "relevance": 0.6327,
+          "n_answer_sentences": 1.0
+        },
+        "degraded": "every judge in the chain was unavailable (gemini/gemini-3.5-flash: judge_call_failed: gemini/gemini-3.5-flash failed after 3 attempt(s): litellm.RateLimitError: litellm.RateLimitError: geminiException - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 53.594418523s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\n        \"links\": [\n          {\n            \"description\": \"Learn more about Gemini API quotas\",\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.QuotaFailure\",\n        \"violations\": [\n          {\n            \"quotaMetric\": \"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\n            \"quotaId\": \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\n            \"quotaDimensions\": {\n              \"location\": \"global\",\n              \"model\": \"gemini-3.5-flash\"\n            },\n            \"quotaValue\": \"20\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.RetryInfo\",\n        \"retryDelay\": \"53s\"\n      }\n    ]\n  }\n}\n | groq/openai/gpt-oss-120b: judge_call_failed: groq/openai/gpt-oss-120b failed after 3 attempt(s): litellm.RateLimitError: RateLimitError: GroqException - {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kwcch3qde07bq3zn972r7mph` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6605, Requested 1869. Please try again in 3.554999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n)"
+      },
+      {
+        "id": "q11",
+        "question": "Why is reading the existing chunk IDs and then appending an unsafe way to achieve idempotency?",
+        "expects_fallback": false,
+        "answer": "Reading the existing chunk identifiers and then simply appending the new chunks is unsafe because it creates a time\u2011of\u2011check\u2011to\u2011time\u2011of\u2011use race. If two ingestion calls run concurrently (for example, from multiple workers or a client retry after a timeout), each call can read the same empty set of identifiers, embed the same chunks, and then both append them. This race allows duplicate chunks to be inserted, breaking the duplicate\u2011free guarantee that idempotency is supposed to provide\u3010Doc: ingestion_operations_notes.md, Chunk: f821a4e4da7a33b4beb0de2a7bbcc4288d933d63afd95491b1e5e8cce7fe0f2f\u3011.",
+        "fallback_triggered": false,
+        "chunk_count": 5,
+        "top_similarity": 0.6412969827651978,
+        "citations": [],
+        "unverified_citation_count": 0,
+        "generation_prompt_tokens": 961,
+        "generation_completion_tokens": 194,
+        "retrieval_latency_ms": 34.562,
+        "generation_latency_ms": 787.062,
+        "scored": true,
+        "scored_under": "faithfulness_relevance",
+        "false_refusal": false,
+        "faithfulness_score": 4,
+        "faithfulness_rationale": "Mean best-match similarity between each of 3 answer sentence(s) and the retrieved context is 0.704; the least-supported sentence scores 0.597. Similarity detects unsupported content, not contradiction.",
+        "relevance_score": 4,
+        "relevance_rationale": "Question-answer cosine similarity 0.798.",
+        "instrument": "local-embedding",
+        "measured": {
+          "groundedness": 0.7038,
+          "weakest_sentence_support": 0.5966,
+          "relevance": 0.7976,
+          "n_answer_sentences": 3.0
+        },
+        "degraded": "every judge in the chain was unavailable (gemini/gemini-3.5-flash: judge_call_failed: gemini/gemini-3.5-flash failed after 3 attempt(s): litellm.RateLimitError: litellm.RateLimitError: geminiException - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 45.430153542s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\n        \"links\": [\n          {\n            \"description\": \"Learn more about Gemini API quotas\",\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.QuotaFailure\",\n        \"violations\": [\n          {\n            \"quotaMetric\": \"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\n            \"quotaId\": \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\n            \"quotaDimensions\": {\n              \"location\": \"global\",\n              \"model\": \"gemini-3.5-flash\"\n            },\n            \"quotaValue\": \"20\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.RetryInfo\",\n        \"retryDelay\": \"45s\"\n      }\n    ]\n  }\n}\n | groq/openai/gpt-oss-120b: judge_call_failed: groq/openai/gpt-oss-120b failed after 3 attempt(s): litellm.RateLimitError: RateLimitError: GroqException - {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kwcch3qde07bq3zn972r7mph` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6637, Requested 2080. Please try again in 5.377499999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n)"
+      },
+      {
+        "id": "q12",
+        "question": "Why must stale-chunk cleanup be keyed on the source name rather than on the content hash?",
+        "expects_fallback": false,
+        "answer": "Stale\u2011chunk cleanup has to use the logical document (source) name because the content hash changes whenever a document is revised. When a file is updated its new version gets a different hash, so if cleanup tried to delete rows by the new hash it would never match the rows that were written under the old hash. By comparing the stored hash for a given source name to the incoming hash and deleting by source name when they differ, the pipeline can correctly remove the outdated chunks.\u3010Doc: ingestion_operations_notes.md, Chunk: 7efbf68853f042e3d19dc529853f565651960979294c265199646f1c36448f74\u3011",
+        "fallback_triggered": false,
+        "chunk_count": 5,
+        "top_similarity": 0.6124605536460876,
+        "citations": [],
+        "unverified_citation_count": 0,
+        "generation_prompt_tokens": 863,
+        "generation_completion_tokens": 195,
+        "retrieval_latency_ms": 36.736,
+        "generation_latency_ms": 836.666,
+        "scored": true,
+        "scored_under": "faithfulness_relevance",
+        "false_refusal": false,
+        "faithfulness_score": 4,
+        "faithfulness_rationale": "Mean best-match similarity between each of 3 answer sentence(s) and the retrieved context is 0.739; the least-supported sentence scores 0.685. Similarity detects unsupported content, not contradiction.",
+        "relevance_score": 4,
+        "relevance_rationale": "Question-answer cosine similarity 0.695.",
+        "instrument": "local-embedding",
+        "measured": {
+          "groundedness": 0.7392,
+          "weakest_sentence_support": 0.685,
+          "relevance": 0.6948,
+          "n_answer_sentences": 3.0
+        },
+        "degraded": "every judge in the chain was unavailable (gemini/gemini-3.5-flash: judge_call_failed: gemini/gemini-3.5-flash failed after 3 attempt(s): litellm.RateLimitError: litellm.RateLimitError: geminiException - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 36.986620671s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\n        \"links\": [\n          {\n            \"description\": \"Learn more about Gemini API quotas\",\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.QuotaFailure\",\n        \"violations\": [\n          {\n            \"quotaMetric\": \"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\n            \"quotaId\": \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\n            \"quotaDimensions\": {\n              \"location\": \"global\",\n              \"model\": \"gemini-3.5-flash\"\n            },\n            \"quotaValue\": \"20\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.RetryInfo\",\n        \"retryDelay\": \"36s\"\n      }\n    ]\n  }\n}\n | groq/openai/gpt-oss-120b: judge_call_failed: groq/openai/gpt-oss-120b failed after 3 attempt(s): litellm.RateLimitError: RateLimitError: GroqException - {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kwcch3qde07bq3zn972r7mph` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6606, Requested 2010. Please try again in 4.62s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n)"
+      },
+      {
+        "id": "q13",
+        "question": "At roughly what chunk size does the all-MiniLM-L6-v2 embedding model start silently truncating input?",
+        "expects_fallback": false,
+        "answer": "The all\u2011MiniLM\u2011L6\u2011v2 model silently truncates inputs once they exceed about\u202f256 word\u2011pieces\u2014roughly\u202f1,000 characters. In practice, any chunk larger than roughly\u202f900\u202fcharacters will be cut off, with only the beginning of the chunk actually embedded\u3010Doc: ingestion_operations_notes.md, Chunk: 88b9a80736ce8bd023d56b0f116ea1abab17498d0599d0c0ef0d519d1d6903cd\u3011.",
+        "fallback_triggered": false,
+        "chunk_count": 5,
+        "top_similarity": 0.7727504372596741,
+        "citations": [],
+        "unverified_citation_count": 0,
+        "generation_prompt_tokens": 1000,
+        "generation_completion_tokens": 208,
+        "retrieval_latency_ms": 38.898,
+        "generation_latency_ms": 676.24,
+        "scored": true,
+        "scored_under": "faithfulness_relevance",
+        "false_refusal": false,
+        "faithfulness_score": 4,
+        "faithfulness_rationale": "Mean best-match similarity between each of 2 answer sentence(s) and the retrieved context is 0.783; the least-supported sentence scores 0.696. Similarity detects unsupported content, not contradiction.",
+        "relevance_score": 4,
+        "relevance_rationale": "Question-answer cosine similarity 0.755.",
+        "instrument": "local-embedding",
+        "measured": {
+          "groundedness": 0.7832,
+          "weakest_sentence_support": 0.6955,
+          "relevance": 0.7553,
+          "n_answer_sentences": 2.0
+        },
+        "degraded": "every judge in the chain was unavailable (gemini/gemini-3.5-flash: judge_call_failed: gemini/gemini-3.5-flash failed after 3 attempt(s): litellm.RateLimitError: litellm.RateLimitError: geminiException - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 28.973037398s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\n        \"links\": [\n          {\n            \"description\": \"Learn more about Gemini API quotas\",\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.QuotaFailure\",\n        \"violations\": [\n          {\n            \"quotaMetric\": \"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\n            \"quotaId\": \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\n            \"quotaDimensions\": {\n              \"location\": \"global\",\n              \"model\": \"gemini-3.5-flash\"\n            },\n            \"quotaValue\": \"20\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.RetryInfo\",\n        \"retryDelay\": \"28s\"\n      }\n    ]\n  }\n}\n | groq/openai/gpt-oss-120b: judge_call_failed: groq/openai/gpt-oss-120b failed after 3 attempt(s): litellm.RateLimitError: RateLimitError: GroqException - {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kwcch3qde07bq3zn972r7mph` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6745, Requested 1891. Please try again in 4.77s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n)"
+      },
+      {
+        "id": "q14",
+        "question": "Why is marginal compute not zero for an embedded vector store at ten million vectors?",
+        "expects_fallback": false,
+        "answer": "The reference explains that the \u201cmarginal compute is zero\u201d claim is misleading.\u202fWhen the store holds ten\u202fmillion vectors, the cost of the additional compute needed to serve queries (e.g., embedding passes, index probes, and the extra memory pressure of a larger resident set) is no longer negligible.\u202fAt that scale the marginal\u2011compute line in the cost model shows a charge of roughly **$35\u202f\u2013\u202f$85 per month** rather than zero\u202f[Doc: cost_model_reference.pdf, Chunk: aa7741ca31538f6cf6a5833868bb72f0d19acfeb51632bc49cf73e2691664caa]. This reflects the fact that, while processor time per query is tiny, the larger vector store requires more memory, larger read buffers, and more compute resources to keep the index and embeddings resident and to handle queries, so the marginal compute cost becomes non\u2011zero.",
+        "fallback_triggered": false,
+        "chunk_count": 5,
+        "top_similarity": 0.5562071800231934,
+        "citations": [
+          {
+            "source": "cost_model_reference.pdf",
+            "chunk_id": "aa7741ca31538f6cf6a5833868bb72f0d19acfeb51632bc49cf73e2691664caa"
+          }
+        ],
+        "unverified_citation_count": 0,
+        "generation_prompt_tokens": 1009,
+        "generation_completion_tokens": 258,
+        "retrieval_latency_ms": 32.782,
+        "generation_latency_ms": 2026.734,
+        "scored": true,
+        "scored_under": "faithfulness_relevance",
+        "false_refusal": false,
+        "faithfulness_score": 4,
+        "faithfulness_rationale": "Mean best-match similarity between each of 4 answer sentence(s) and the retrieved context is 0.685; the least-supported sentence scores 0.616. Similarity detects unsupported content, not contradiction.",
+        "relevance_score": 4,
+        "relevance_rationale": "Question-answer cosine similarity 0.770.",
+        "instrument": "local-embedding",
+        "measured": {
+          "groundedness": 0.6848,
+          "weakest_sentence_support": 0.6158,
+          "relevance": 0.7699,
+          "n_answer_sentences": 4.0
+        },
+        "degraded": "every judge in the chain was unavailable (gemini/gemini-3.5-flash: judge_call_failed: gemini/gemini-3.5-flash failed after 3 attempt(s): litellm.RateLimitError: litellm.RateLimitError: geminiException - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 19.28762036s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\n        \"links\": [\n          {\n            \"description\": \"Learn more about Gemini API quotas\",\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.QuotaFailure\",\n        \"violations\": [\n          {\n            \"quotaMetric\": \"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\n            \"quotaId\": \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\n            \"quotaDimensions\": {\n              \"model\": \"gemini-3.5-flash\",\n              \"location\": \"global\"\n            },\n            \"quotaValue\": \"20\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.RetryInfo\",\n        \"retryDelay\": \"19s\"\n      }\n    ]\n  }\n}\n | groq/openai/gpt-oss-120b: judge_call_failed: groq/openai/gpt-oss-120b failed after 3 attempt(s): litellm.RateLimitError: RateLimitError: GroqException - {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kwcch3qde07bq3zn972r7mph` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6680, Requested 2163. Please try again in 6.3225s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n)"
+      },
+      {
+        "id": "q15",
+        "question": "What is the average resting heart rate of an adult blue whale in beats per minute?",
+        "expects_fallback": true,
+        "answer": "I do not have sufficient information in the provided context to answer this question.",
+        "fallback_triggered": true,
+        "chunk_count": 5,
+        "top_similarity": 0.21110528707504272,
+        "citations": [],
+        "unverified_citation_count": 0,
+        "generation_prompt_tokens": 0,
+        "generation_completion_tokens": 0,
+        "retrieval_latency_ms": 42.463,
+        "generation_latency_ms": 0.0,
+        "scored": false,
+        "scored_under": "fallback_correctness",
+        "fallback_exact_string": true,
+        "generation_skipped": true,
+        "fallback_correct": true
+      }
+    ]
+  },
+  "judge_validation": {
+    "n_probes": 4,
+    "n_passed": 0,
+    "pass_rate": 0.0,
+    "interpretation": "Probes assert properties that follow from the rubric's own definitions: faithfulness tracks grounding rather than world-truth, the two axes move independently, and answer length does not buy a score. A failure means the judge is measuring something other than what it claims.",
+    "probes": [
+      {
+        "id": "faithful_but_false",
+        "expectation": "faithfulness_high",
+        "why_it_matters": "Grounded in the context verbatim. A judge scoring this low is grading world-truth instead of groundedness.",
+        "faithfulness_score": 0,
+        "relevance_score": 0,
+        "faithfulness_rationale": "",
+        "relevance_rationale": "",
+        "passed": false,
+        "note": "judge errored: judge_call_failed: gemini/gemini-3.5-flash failed after 3 attempt(s): litellm.RateLimitError: litellm.RateLimitError: geminiException - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 35.707450109s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\n        \"links\": [\n          {\n            \"description\": \"Learn more about Gemini API quotas\",\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.QuotaFailure\",\n        \"violations\": [\n          {\n            \"quotaMetric\": \"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\n            \"quotaId\": \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\n            \"quotaDimensions\": {\n              \"location\": \"global\",\n              \"model\": \"gemini-3.5-flash\"\n            },\n            \"quotaValue\": \"20\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.RetryInfo\",\n        \"retryDelay\": \"35s\"\n      }\n    ]\n  }\n}\n"
+      },
+      {
+        "id": "true_but_ungrounded",
+        "expectation": "faithfulness_low",
+        "why_it_matters": "No span of the context supports these figures.",
+        "faithfulness_score": 0,
+        "relevance_score": 0,
+        "faithfulness_rationale": "",
+        "relevance_rationale": "",
+        "passed": false,
+        "note": "judge errored: judge_call_failed: gemini/gemini-3.5-flash failed after 3 attempt(s): litellm.RateLimitError: litellm.RateLimitError: geminiException - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 31.81828182s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\n        \"links\": [\n          {\n            \"description\": \"Learn more about Gemini API quotas\",\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.QuotaFailure\",\n        \"violations\": [\n          {\n            \"quotaMetric\": \"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\n            \"quotaId\": \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\n            \"quotaDimensions\": {\n              \"location\": \"global\",\n              \"model\": \"gemini-3.5-flash\"\n            },\n            \"quotaValue\": \"20\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.RetryInfo\",\n        \"retryDelay\": \"31s\"\n      }\n    ]\n  }\n}\n"
+      },
+      {
+        "id": "grounded_but_off_topic",
+        "expectation": "faithful_high_relevance_low",
+        "why_it_matters": "The two axes must move independently: grounded, but does not state the overlap the question asked for.",
+        "faithfulness_score": 0,
+        "relevance_score": 0,
+        "faithfulness_rationale": "",
+        "relevance_rationale": "",
+        "passed": false,
+        "note": "judge errored: judge_call_failed: gemini/gemini-3.5-flash failed after 3 attempt(s): litellm.RateLimitError: litellm.RateLimitError: geminiException - {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 28.045640718s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\n        \"links\": [\n          {\n            \"description\": \"Learn more about Gemini API quotas\",\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.QuotaFailure\",\n        \"violations\": [\n          {\n            \"quotaMetric\": \"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\n            \"quotaId\": \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\n            \"quotaDimensions\": {\n              \"location\": \"global\",\n              \"model\": \"gemini-3.5-flash\"\n            },\n            \"quotaValue\": \"20\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.RetryInfo\",\n        \"retryDelay\": \"28s\"\n      }\n    ]\n  }\n}\n"
+      },
+      {
+        "id": "verbose_padding",
+        "expectation": "relevance_not_inflated_by_length",
+        "why_it_matters": "Correct but padded. Compared against the terse-correct control below; length must not buy a higher score.",
+        "faithfulness_score": 0,
+        "relevance_score": 0,
+        "faithfulness_rationale": "",
+        "relevance_rationale": "",
+        "passed": false,
+        "note": "padded=0 vs terse=0 -- no length bias",
+        "control_relevance_score": 0,
+        "control_faithfulness_score": 0,
+        "length_inflated_score": false
+      }
+    ]
+  }
+}
