@@ -136,6 +136,15 @@ Embeddings are local (`all-MiniLM-L6-v2`, 384-dim) — $0 marginal cost and, mor
 
 ## Architecture
 
+<p align="center">
+  <img src="docs/architecture.png" alt="End-to-end architecture: ingestion, chunking, embedding, storage, retrieval, generation, and both no-context branches" width="900">
+</p>
+
+The full end-to-end path, with the two refusal gates marked in red. Vector
+source: [`docs/architecture.svg`](docs/architecture.svg).
+
+Module view:
+
 ```
   client ──► api.py  (/ingest  /query  /health)
                │                    │
