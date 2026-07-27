@@ -13,7 +13,15 @@ from typing import Any
 import pytest
 
 from src.config import get_settings
-from src.llm_client import DiskCache, LLMClient, LLMError, LLMResponse, _is_transient
+from src.llm_client import (
+    TOKEN_BUDGET_SAFETY_FACTOR,
+    DiskCache,
+    LLMClient,
+    LLMError,
+    LLMResponse,
+    _estimate_tokens,
+    _is_transient,
+)
 
 
 class FakeUsage:
@@ -302,3 +310,129 @@ def test_cached_response_round_trips_through_json(tmp_path: Path) -> None:
     payload = {"text": "hello", "prompt_tokens": 5, "completion_tokens": 2, "attempts": 1}
     cache.put("k", payload)
     assert cache.get("k") == json.loads(json.dumps(payload))
+
+
+# ---------------------------------------------------------------------------
+# Token pacing
+#
+# Tokens-per-minute, not requests-per-minute, is what actually binds this
+# workload. The limiter shipped untested, which is how it reached CI still
+# pacing calls to a *mocked* provider -- no quota to protect, ~2 minutes of
+# pure sleeping per run. conftest disables it suite-wide; these tests opt back
+# in against a fake clock, so they assert the real waits without spending them.
+# ---------------------------------------------------------------------------
+PACED_MODEL = "test/paced-model"  # deliberately absent from tokens_per_minute_by_model
+PACED_CEILING = 1000
+PACED_BUDGET = int(PACED_CEILING * TOKEN_BUDGET_SAFETY_FACTOR)  # 750
+
+
+class FakeClock:
+    """A monotonic clock that only advances when something sleeps."""
+
+    def __init__(self) -> None:
+        self.now = 1000.0
+        self.slept: list[float] = []
+
+    def monotonic(self) -> float:
+        return self.now
+
+    def sleep(self, seconds: float) -> None:
+        self.slept.append(seconds)
+        self.now += seconds
+
+
+@pytest.fixture
+def clock(monkeypatch: pytest.MonkeyPatch) -> FakeClock:
+    fake = FakeClock()
+    monkeypatch.setattr("time.monotonic", fake.monotonic)
+    monkeypatch.setattr("time.sleep", fake.sleep)
+    return fake
+
+
+@pytest.fixture
+def paced(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Re-enable pacing for one test; conftest turns it off for the suite."""
+    monkeypatch.setattr(get_settings(), "default_tokens_per_minute", PACED_CEILING)
+
+
+def test_pacing_is_off_when_no_ceiling_is_configured(
+    client: LLMClient, clock: FakeClock, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """A model with no published TPM limit must not be paced at all."""
+    monkeypatch.setattr(get_settings(), "default_tokens_per_minute", 0)
+    assert client._throttle(PACED_MODEL, 10_000) == 0.0
+    assert clock.slept == []
+
+
+def test_calls_within_the_budget_never_wait(
+    client: LLMClient, clock: FakeClock, paced: None
+) -> None:
+    assert client._throttle(PACED_MODEL, 300) == 0.0
+    assert client._throttle(PACED_MODEL, 300) == 0.0  # 600 of 750
+    assert clock.slept == []
+
+
+def test_only_the_safety_factor_of_the_ceiling_is_spendable(
+    client: LLMClient, clock: FakeClock, paced: None
+) -> None:
+    """The 4-chars-per-token estimate can undershoot and the provider's own
+    window is already partly spent when this process starts, so the limiter
+    must hold back a margin rather than aim at the stated ceiling."""
+    client._throttle(PACED_MODEL, 400)
+    client._throttle(PACED_MODEL, 400)  # 800: under the ceiling, over the budget
+
+    assert clock.slept, f"800 tokens fit under {PACED_CEILING} but must exceed {PACED_BUDGET}"
+
+
+def test_exceeding_the_budget_waits_for_the_window_to_slide(
+    client: LLMClient, clock: FakeClock, paced: None
+) -> None:
+    client._throttle(PACED_MODEL, 700)
+    waited = client._throttle(PACED_MODEL, 700)
+
+    assert waited > 0.0, "the second call must be paced"
+    assert waited <= 60.0, "never wait longer than the window it is waiting on"
+    assert clock.now == pytest.approx(1000.0 + waited)
+
+
+def test_the_window_frees_up_once_a_minute_has_passed(
+    client: LLMClient, clock: FakeClock, paced: None
+) -> None:
+    client._throttle(PACED_MODEL, PACED_BUDGET)
+    clock.now += 60.0  # a full window elapses with no calls
+    assert client._throttle(PACED_MODEL, PACED_BUDGET) == 0.0
+    assert clock.slept == [], "an expired window must not cost a wait"
+
+
+def test_a_request_larger_than_the_whole_budget_still_proceeds(
+    client: LLMClient, clock: FakeClock, paced: None
+) -> None:
+    """Clamped to the budget, and admitted against an empty window. Without
+    both, an over-large estimate could never satisfy the check and the caller
+    would wait forever."""
+    assert client._throttle(PACED_MODEL, PACED_BUDGET * 100) == 0.0
+    assert clock.slept == []
+
+
+def test_each_model_is_paced_independently(
+    client: LLMClient, clock: FakeClock, paced: None
+) -> None:
+    """Limits are per-model at the provider, so one model's spend must not
+    throttle another's."""
+    client._throttle(PACED_MODEL, PACED_BUDGET)
+    assert client._throttle("test/other-model", PACED_BUDGET) == 0.0
+    assert clock.slept == []
+
+
+@pytest.mark.parametrize(
+    ("messages", "max_tokens", "expected"),
+    [
+        ([], 100, 100),  # completion budget alone
+        ([{"role": "user", "content": "x" * 400}], 100, 200),  # 400 chars -> 100 tokens
+        ([{"role": "user", "content": None}], 50, 50),  # a null content must not raise
+    ],
+)
+def test_token_estimate_counts_prompt_and_completion(
+    messages: list[dict[str, Any]], max_tokens: int, expected: int
+) -> None:
+    assert _estimate_tokens(messages, max_tokens) == expected

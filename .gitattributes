@@ -1,0 +1,20 @@
+# Byte-for-byte reproducibility is a correctness requirement in this repo, not
+# a formatting preference.
+#
+#   doc_key  = sha256(file_bytes)
+#   chunk_id = f(doc_key, chunk_index)
+#
+# and data/eval_dataset.json commits those chunk_ids as gold labels. Any
+# checkout that rewrites line endings yields different bytes for the .md and
+# .html corpus documents, hence different chunk_ids, hence gold labels that
+# resolve against nothing -- every retrieval metric drops to zero and nothing
+# raises. tests/test_corpus_determinism.py catches it, but only after the
+# corpus has already been checked out wrong.
+#
+# This tree was authored with core.autocrlf=false, so it is correct today by
+# accident of local configuration. The Git for Windows installer defaults
+# autocrlf to true, which means that without this file a grader cloning on
+# Windows would see the corpus tests fail on their machine and nowhere else.
+#
+# So: never let git rewrite file contents on checkout or commit.
+* -text
