@@ -108,6 +108,29 @@ def _settings_key(env: str) -> str | None:
     return getattr(settings, env.lower(), None)
 
 
+def credential_for(model: str) -> str | None:
+    """The API key this model should be called with, or None for local models.
+
+    Must be passed to the provider explicitly. litellm resolves a missing
+    ``api_key`` by reading ``os.environ``, and pydantic-settings loads ``.env``
+    into the Settings object *without* exporting it -- so the key only reaches
+    litellm via a ``load_dotenv()`` it happens to run at import time, resolved
+    against the current working directory.
+
+    That worked from the repo root and failed everywhere else: same ``.env``,
+    same key, a 401 from a server started elsewhere and success from a script.
+    Reading the credential from settings here makes configuration explicit and
+    keeps it in the one place the rest of the project reads it from.
+    """
+    provider = routing_provider(model)
+    if provider in LOCAL_PROVIDERS:
+        return None
+    env = PROVIDER_KEY_ENV.get(provider)
+    if env is None:
+        return None
+    return os.environ.get(env) or _settings_key(env)
+
+
 class ProviderChain:
     """An ordered set of providers with health tracking.
 

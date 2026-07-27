@@ -30,7 +30,7 @@ from pathlib import Path
 from typing import Any
 
 from src.config import get_settings
-from src.providers import ProviderChain
+from src.providers import ProviderChain, credential_for
 
 #: Fraction of a provider's stated TPM the client will actually spend, as
 #: headroom for token-estimation error and a window this process did not
@@ -316,6 +316,9 @@ class LLMClient:
                     model=model,
                     messages=messages,
                     timeout=settings.llm_timeout_seconds,
+                    # Explicit, not ambient. See credential_for(): without it
+                    # litellm reads os.environ, which .env never populates.
+                    api_key=credential_for(model),
                     **params,
                 )
             except Exception as exc:

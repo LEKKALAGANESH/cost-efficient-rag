@@ -11,11 +11,13 @@ import random
 
 import pytest
 
+from src.config import get_settings
 from src.providers import (
     LOCAL_PROVIDERS,
     PROVIDER_KEY_ENV,
     ProviderChain,
     backoff_delay,
+    credential_for,
     has_credential,
     routing_provider,
 )
@@ -127,3 +129,43 @@ def test_backoff_uses_full_jitter_not_a_fixed_multiplier() -> None:
     rng = random.Random(3)
     draws = {round(backoff_delay(4, base=1.0, cap=45.0, rng=rng), 6) for _ in range(50)}
     assert len(draws) > 40, "delays must be spread, not constant"
+
+
+# ---------------------------------------------------------------------------
+# Credential resolution
+# ---------------------------------------------------------------------------
+def test_credential_comes_from_settings_when_the_environment_is_empty(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """The bug this pins: litellm was called with no api_key, so it fell back to
+    os.environ -- which pydantic-settings never populates when the key arrives
+    via .env. It only worked because litellm runs load_dotenv() at import,
+    resolved against the current working directory. Same .env and same key gave
+    a 401 from a server and success from a script.
+    """
+    monkeypatch.delenv("GROQ_API_KEY", raising=False)
+    monkeypatch.setattr(get_settings(), "groq_api_key", "gsk_from_settings")
+    assert credential_for("groq/openai/gpt-oss-120b") == "gsk_from_settings"
+
+
+def test_the_process_environment_wins_over_the_dotenv_file(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """An explicitly exported key is a deliberate override of a checked-in
+    default, so it must take precedence rather than be shadowed by it."""
+    monkeypatch.setenv("GROQ_API_KEY", "gsk_from_environ")
+    monkeypatch.setattr(get_settings(), "groq_api_key", "gsk_from_settings")
+    assert credential_for("groq/openai/gpt-oss-120b") == "gsk_from_environ"
+
+
+def test_credential_for_a_local_provider_is_none() -> None:
+    """A local model is the terminal option in a chain precisely because it
+    cannot fail on authentication; handing it a key would be meaningless."""
+    assert credential_for("ollama/llama3") is None
+    assert credential_for("lm_studio/whatever") is None
+
+
+def test_the_routing_prefix_selects_the_key_not_the_model_family() -> None:
+    """groq/openai/gpt-oss-120b is served by Groq and must use the Groq key,
+    even though the model portion says openai."""
+    assert PROVIDER_KEY_ENV[routing_provider("groq/openai/gpt-oss-120b")] == "GROQ_API_KEY"
