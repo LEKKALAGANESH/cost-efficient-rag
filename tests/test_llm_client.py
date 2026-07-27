@@ -12,6 +12,7 @@ from typing import Any
 
 import pytest
 
+from src.config import get_settings
 from src.llm_client import DiskCache, LLMClient, LLMError, LLMResponse, _is_transient
 
 
@@ -234,9 +235,15 @@ def test_exhausted_retries_raise_rather_than_fabricate_an_answer(
 ) -> None:
     monkeypatch.setattr("time.sleep", lambda _s: None)
     calls = patch_completion(monkeypatch, RuntimeError("503 unavailable"))
+
+    # Read the budget rather than hardcoding it. The literal 3 here silently
+    # encoded llm_max_retries=2, so raising the default to 5 broke this test in
+    # CI while it kept passing locally against a `.env` that still said 2.
+    expected_attempts = get_settings().llm_max_retries + 1
+
     with pytest.raises(LLMError, match="failed after"):
         client.complete([{"role": "user", "content": "q"}], model="m")
-    assert len(calls) == 3  # 1 initial + llm_max_retries (2)
+    assert len(calls) == expected_attempts, "one initial attempt plus llm_max_retries"
 
 
 def test_a_failed_call_is_never_cached(client: LLMClient, monkeypatch: pytest.MonkeyPatch) -> None:

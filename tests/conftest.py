@@ -17,12 +17,23 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-# Must precede any `from src...` import: Settings has no defaults for these.
+# Must precede any `from src...` import: Settings is read once, at first use.
 os.environ.setdefault("GROQ_API_KEY", "test-groq-key")
 os.environ.setdefault("GEMINI_API_KEY", "test-gemini-key")
 # Keep torch single-threaded in CI so N pytest workers don't thrash the box.
 os.environ.setdefault("OMP_NUM_THREADS", "1")
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
+
+# Pin the settings the test suite asserts on, rather than inheriting whatever
+# the developer's `.env` happens to hold. Without this the suite passes locally
+# and fails in CI -- which is exactly what happened: `llm_max_retries` was
+# raised from 2 to 5, a local `.env` still said 2, and the retry-count
+# assertions only broke once CI ran them with no `.env` present.
+os.environ.setdefault("LLM_MAX_RETRIES", "2")
+
+# No client-side token pacing against a fake provider: there is no quota to
+# protect, and pacing turned a ~35s suite into ~150s of mostly sleeping.
+os.environ.setdefault("DEFAULT_TOKENS_PER_MINUTE", "0")
 
 
 @pytest.fixture(scope="session")
