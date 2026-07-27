@@ -55,6 +55,11 @@ class StubJudge:
     def __init__(self) -> None:
         self.calls = 0
 
+    def complete_with_chain(self, messages: list[dict[str, Any]], **_: Any) -> LLMResponse:
+        """Generation goes through the provider chain; judging still calls a
+        named model directly, so this double has to answer to both."""
+        return self.complete(messages)
+
     def complete(self, messages: list[dict[str, Any]], **_: Any) -> LLMResponse:
         self.calls += 1
         system = messages[0]["content"]

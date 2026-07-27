@@ -20,6 +20,7 @@ from src.config import FALLBACK_ANSWER, get_settings
 from src.embeddings import embedding_service
 from src.llm_client import LLMError, LLMResponse, get_llm_client
 from src.logger import log_query
+from src.providers import ProviderChain
 from src.vector_store import SearchResult, VectorStoreManager, get_vector_store
 
 # ---------------------------------------------------------------------------
@@ -77,6 +78,10 @@ class QueryResult:
     estimated_cost_usd: float = 0.0
     unverified_citation_count: int = 0
     model: str | None = None
+    #: Set when the primary provider failed and a later one in the chain
+    #: answered. Surfaced rather than hidden: an answer produced by the backup
+    #: model is still a degraded result, even though it is a successful request.
+    degraded_from: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -157,6 +162,15 @@ class RAGPipeline:
     ) -> None:
         self._store = store if store is not None else get_vector_store()
         self._llm = llm_client if llm_client is not None else get_llm_client()
+        # One chain per pipeline, not one per call: the circuit breaker's whole
+        # job is to remember that a credential is already known bad, and a
+        # chain rebuilt on every query forgets that and re-asks it every time.
+        self._chain = ProviderChain.from_settings()
+
+    @property
+    def provider_health(self) -> dict[str, Any]:
+        """Which providers are live, degraded, or circuit-open."""
+        return self._chain.health()
 
     @property
     def store(self) -> VectorStoreManager:
@@ -212,7 +226,11 @@ class RAGPipeline:
         messages, _nonce = build_messages(query, chunks)
         generation_started = time.perf_counter()
         try:
-            response: LLMResponse = self._llm.complete(messages, model=settings.generation_model)
+            # The chain, not a single model. Calling complete() here meant the
+            # documented fallback existed but no user-facing request could reach
+            # it: one dead Groq credential returned a 502 while a working Gemini
+            # key sat unused in the same .env.
+            response: LLMResponse = self._llm.complete_with_chain(messages, chain=self._chain)
         except LLMError as exc:
             generation_ms = (time.perf_counter() - generation_started) * 1000
             result = QueryResult(
@@ -259,6 +277,7 @@ class RAGPipeline:
             estimated_cost_usd=response.estimated_cost_usd,
             unverified_citation_count=unverified,
             model=response.model,
+            degraded_from=response.degraded_from,
         )
         return self._finish(result, query, log)
 

@@ -108,6 +108,10 @@ class QueryMetadata(BaseModel):
     unverified_citation_count: int
     cache_hit: bool
     model: str | None
+    #: The primary provider, when it failed and a later one in the chain
+    #: answered. None on the normal path. A caller that silently accepts a
+    #: degraded answer cannot tell it was degraded, so it is reported.
+    degraded_from: str | None = None
 
 
 class QueryResponse(BaseModel):
@@ -332,5 +336,6 @@ def query(request: QueryRequest, pipeline: PipelineDep) -> QueryResponse:
             unverified_citation_count=result.unverified_citation_count,
             cache_hit=result.cache_hit,
             model=result.model,
+            degraded_from=result.degraded_from,
         ),
     )

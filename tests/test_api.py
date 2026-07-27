@@ -46,6 +46,11 @@ class FakeLLM:
         self.template = template
         self.calls: list[list[dict[str, Any]]] = []
 
+    def complete_with_chain(self, messages: list[dict[str, Any]], **_: Any) -> LLMResponse:
+        """The pipeline calls the chain, not a bare model, so the double must
+        expose the same entry point the production path uses."""
+        return self.complete(messages)
+
     def complete(self, messages: list[dict[str, Any]], **_: Any) -> LLMResponse:
         self.calls.append(messages)
         system = messages[0]["content"]
@@ -67,8 +72,29 @@ class FakeLLM:
 
 
 class FailingLLM:
+    """Every provider in the chain is exhausted, not just one."""
+
+    def complete_with_chain(self, *_: Any, **__: Any) -> LLMResponse:
+        raise LLMError("every provider in the chain failed -- groq: 401; gemini: 401")
+
     def complete(self, *_: Any, **__: Any) -> LLMResponse:
         raise LLMError("provider unavailable after 3 attempts")
+
+
+class DegradingLLM:
+    """Primary is dead, the backup answers. The case that matters: a request
+    that succeeds is still a degraded one, and the caller must be able to see
+    that rather than silently accepting the backup as normal."""
+
+    def complete_with_chain(self, messages: list[dict[str, Any]], **_: Any) -> LLMResponse:
+        return LLMResponse(
+            text="Backup answer.",
+            model="gemini/gemini-3.5-flash",
+            prompt_tokens=90,
+            completion_tokens=20,
+            attempts=1,
+            degraded_from="groq/openai/gpt-oss-120b",
+        )
 
 
 @pytest.fixture
@@ -399,3 +425,35 @@ def test_chunk_text_cannot_close_the_context_block(client: TestClient, fake_llm:
     # Exactly one opening tag and one closing tag survive: the content's
     # attempt to close early was neutralised.
     assert system.count("</context id=") == 1
+
+
+def test_a_dead_primary_falls_through_to_the_backup_and_says_so(
+    store: LanceDBVectorStore,
+) -> None:
+    """The regression this pins: /query called complete() with a single model,
+    so the provider chain existed but no user-facing request could reach it.
+    One expired Groq key returned 502 while a working Gemini key sat unused in
+    the same .env.
+    """
+    pipeline = RAGPipeline(store=store, llm_client=DegradingLLM())
+    app.dependency_overrides[pipeline_dependency] = lambda: pipeline
+    try:
+        with TestClient(app) as test_client:
+            test_client.post("/ingest", files=_upload("stores.md", MD_DOC))
+            response = test_client.post("/query", json={"query": "What is LanceDB?"})
+    finally:
+        app.dependency_overrides.clear()
+
+    assert response.status_code == 200, "a dead primary must not surface as a failure"
+    metadata = response.json()["metadata"]
+    assert metadata["model"] == "gemini/gemini-3.5-flash", "the backup actually answered"
+    assert metadata["degraded_from"] == "groq/openai/gpt-oss-120b", (
+        "a degraded success must be reported as degraded, not laundered into a normal 200"
+    )
+
+
+def test_a_normal_answer_is_not_marked_degraded(client: TestClient) -> None:
+    client.post("/ingest", files=_upload("stores.md", MD_DOC))
+    response = client.post("/query", json={"query": "What is LanceDB?"})
+    assert response.status_code == 200
+    assert response.json()["metadata"]["degraded_from"] is None
