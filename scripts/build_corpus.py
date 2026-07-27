@@ -155,8 +155,18 @@ def build_pdf(output: Path = OUTPUT) -> Path:
     ones in the README.
 
     ``invariant=1`` pins reportlab's embedded creation timestamp and document
-    ID, which are the only sources of run-to-run variance here. A regression
-    test asserts byte-identical output across two builds.
+    ID, which are the only sources of *run-to-run* variance. They are not the
+    only sources of *machine-to-machine* variance: reportlab deflates its page
+    streams, and deflate output is a property of the zlib build, not of the
+    data. This repo's Windows CPython links zlib-ng while the Linux CI image
+    links stock zlib, so the two produce different compressed bytes for
+    byte-identical input -- different doc_key, different chunk_ids, and every
+    gold label for this document unresolvable on the other platform.
+
+    Two builds on one machine agreed, so the determinism test passed
+    everywhere and the corpus was still not portable. ``pageCompression=0``
+    removes the deflate step entirely: ~4KB larger, and the extracted text is
+    unchanged, so no chunk content and no published metric moves.
     """
     from reportlab.lib.enums import TA_JUSTIFY
     from reportlab.lib.pagesizes import LETTER
@@ -212,6 +222,10 @@ def build_pdf(output: Path = OUTPUT) -> Path:
         # bytes -- and therefore doc_key, and therefore every chunk_id -- change
         # on every build, silently invalidating the committed gold labels.
         invariant=1,
+        # And no deflate: compressed output depends on the zlib build (zlib-ng
+        # on this machine, stock zlib in CI), which made the corpus reproducible
+        # per-machine but not across machines. See the docstring.
+        pageCompression=0,
     ).build(flow, onFirstPage=_decorate, onLaterPages=_decorate)
     return output
 

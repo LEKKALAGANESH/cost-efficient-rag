@@ -253,12 +253,12 @@
     },
     "retrieval_latency_ms": {
       "n_samples": 300,
-      "p50": 27.967,
-      "p95": 33.402,
-      "p99": 37.059,
-      "mean": 26.95,
-      "min": 17.046,
-      "max": 43.206
+      "p50": 33.161,
+      "p95": 38.733,
+      "p99": 41.67,
+      "mean": 31.539,
+      "min": 20.343,
+      "max": 43.033
     },
     "per_question": [
       {
@@ -272,9 +272,9 @@
         ],
         "retrieved_chunk_ids": [
           "c65bbef8dd73b62eae4abd1efd4133b6d7b82ab5ab57dd2225421597bde5c9d2",
-          "f7921e59d30dbf374442ecf449b718dd9aa1300f1adb02c55a1fd9650e9a977c",
-          "aa7741ca31538f6cf6a5833868bb72f0d19acfeb51632bc49cf73e2691664caa",
-          "d24bb0312dd617b3827991d78bc48a17bb1e5e610997d6d85839358662027aeb",
+          "932d37a9def400ac372b07bf4ca4dc0fef78e17ae1d87f5f33bed030054b55f8",
+          "bdceeacdaa9096726b1881a8a627ee4962290927115ec0b7240a30832227dd74",
+          "1cc38ad63dcf6c384edafbef1b5650e3da056be602bd6bad756f6612d62564b5",
           "824b3f3f4e083c631d4242f1a8e1180cb4916a08423d146ea7a3a69e16d1d5da"
         ],
         "retrieved_top1_similarity": 0.541,
@@ -307,7 +307,7 @@
           "02cfaa1911b0b4b4b4d189ee9eca5fd78b11c36099521a2657c27ff040fa5b0f",
           "fb959944247f10f7b52e4f2ad0d000892630674d969534794b63a6b76fb51798",
           "874156d7be72aaa0b0c438b21d8ce4bf0d411ade62a9db3c308905a7237178a1",
-          "d24bb0312dd617b3827991d78bc48a17bb1e5e610997d6d85839358662027aeb",
+          "1cc38ad63dcf6c384edafbef1b5650e3da056be602bd6bad756f6612d62564b5",
           "d2185701e48fcfea29e2cdac97577b60d0fb712559a2ffb7391e2593307533af"
         ],
         "retrieved_top1_similarity": 0.5981,
@@ -339,10 +339,10 @@
         ],
         "retrieved_chunk_ids": [
           "ecb2f94232cd54b4d0b4b204dc7dc274dc97d10440addb6ffa68b54a07352793",
-          "aa7741ca31538f6cf6a5833868bb72f0d19acfeb51632bc49cf73e2691664caa",
+          "bdceeacdaa9096726b1881a8a627ee4962290927115ec0b7240a30832227dd74",
           "c0d2b49afb38e73cb696f51a0b66051830564389f1265d333e4c3363b07b2bf3",
-          "6e36bcf3f07861fe685069675adf07ca61f4c956bbddce00f03d701c56e74ab4",
-          "f7921e59d30dbf374442ecf449b718dd9aa1300f1adb02c55a1fd9650e9a977c"
+          "87f7181e46bfeb9527e32efc2e3c874556c6f504631e849f37d6ef1159043660",
+          "932d37a9def400ac372b07bf4ca4dc0fef78e17ae1d87f5f33bed030054b55f8"
         ],
         "retrieved_top1_similarity": 0.4647,
         "retrieved_sources": [
@@ -678,8 +678,8 @@
           "88b9a80736ce8bd023d56b0f116ea1abab17498d0599d0c0ef0d519d1d6903cd",
           "faade79b6d0d37003dfb3bfb174714172614c7b6f4add9018afaf62381cd9dd4",
           "1f1abf1bdaa4d89601c72c4e80a3d5c2a38b277e30f28d897de59a903c66dd99",
-          "d24bb0312dd617b3827991d78bc48a17bb1e5e610997d6d85839358662027aeb",
-          "78e782c25cfd270550df8267bd132cbad35d0a21d02997cf2b684524c31abed5"
+          "1cc38ad63dcf6c384edafbef1b5650e3da056be602bd6bad756f6612d62564b5",
+          "1835f5cc60577684558dcdd3d2bf505444ea2a1fe7a53b00e23673bb8cb46667"
         ],
         "retrieved_top1_similarity": 0.7728,
         "retrieved_sources": [
@@ -705,15 +705,15 @@
         "expects_fallback": false,
         "n_relevant": 2,
         "relevant_chunk_ids": [
-          "e886c6e01662e68ef7d1d0a91ff801d88f1b763e1a129ffec5edcf29805c134b",
-          "aa7741ca31538f6cf6a5833868bb72f0d19acfeb51632bc49cf73e2691664caa"
+          "337ae81eaf2f61be7944d277fd97f25f554d4b0bdd6cadcc5df3da3abd20140b",
+          "bdceeacdaa9096726b1881a8a627ee4962290927115ec0b7240a30832227dd74"
         ],
         "retrieved_chunk_ids": [
-          "e886c6e01662e68ef7d1d0a91ff801d88f1b763e1a129ffec5edcf29805c134b",
-          "d24bb0312dd617b3827991d78bc48a17bb1e5e610997d6d85839358662027aeb",
-          "78e782c25cfd270550df8267bd132cbad35d0a21d02997cf2b684524c31abed5",
-          "b249aa92466d2ee24088d06c35d165d69e2e4ef962a2fcee7f0ffd9a4861fa13",
-          "aa7741ca31538f6cf6a5833868bb72f0d19acfeb51632bc49cf73e2691664caa"
+          "337ae81eaf2f61be7944d277fd97f25f554d4b0bdd6cadcc5df3da3abd20140b",
+          "1cc38ad63dcf6c384edafbef1b5650e3da056be602bd6bad756f6612d62564b5",
+          "1835f5cc60577684558dcdd3d2bf505444ea2a1fe7a53b00e23673bb8cb46667",
+          "f8e967fd53f90acc1369f493e22ce8cf3690f344e153baa42f5d6df21d908ecb",
+          "bdceeacdaa9096726b1881a8a627ee4962290927115ec0b7240a30832227dd74"
         ],
         "retrieved_top1_similarity": 0.5562,
         "retrieved_sources": [
@@ -740,7 +740,7 @@
         "n_relevant": 0,
         "relevant_chunk_ids": [],
         "retrieved_chunk_ids": [
-          "4091539e460ed4f6d92ebadc06f0e1575ce5dfc8e32d9ed41ef7b5b867b49abf",
+          "eb239d0d10b4a919bc511e12d8b2a84602658285d32c73e68b20bd685df8a953",
           "9e796f9382be33cf4936a0b9f91912a3d10005f83e098f9bf483fc62cdf67cf5",
           "6be3b0b0c7eeb5333ccb54b2c4efa2e9c0812a342cd4760e5f4d024a419af15e",
           "b62bc3cd6d64862fc821267178e8a4ae5713b5c8f16a9ae33a17fdd8353af307",
@@ -769,7 +769,7 @@
     "vector_backend": "lancedb",
     "similarity_threshold": 0.3,
     "corpus_chunk_count": 72,
-    "retrieval_run_at": "2026-07-27T22:59:40+0530",
+    "retrieval_run_at": "2026-07-28T01:54:07+0530",
     "answer_run_at": "2026-07-27T22:27:44+0530",
     "judge_model": "gemini/gemini-3.5-flash",
     "generation_model": "groq/openai/gpt-oss-120b",

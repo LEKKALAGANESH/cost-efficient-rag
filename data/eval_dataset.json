@@ -311,18 +311,18 @@
       "ground_truth_answer": "Because memory is not free. Quantized index codes wanting to stay page-cache-resident, refine reads into the raw vector column, the embedding model's ~0.8-1.2 GB resident set, and a default 2 GB read buffer together push the host from a 2 GiB instance (~$12/mo) to an 8-16 GiB instance (~$49-98/mo).",
       "expects_fallback": false,
       "relevant_chunk_ids": [
-        "e886c6e01662e68ef7d1d0a91ff801d88f1b763e1a129ffec5edcf29805c134b",
-        "aa7741ca31538f6cf6a5833868bb72f0d19acfeb51632bc49cf73e2691664caa"
+        "337ae81eaf2f61be7944d277fd97f25f554d4b0bdd6cadcc5df3da3abd20140b",
+        "bdceeacdaa9096726b1881a8a627ee4962290927115ec0b7240a30832227dd74"
       ],
       "relevant_chunks": [
         {
-          "chunk_id": "e886c6e01662e68ef7d1d0a91ff801d88f1b763e1a129ffec5edcf29805c134b",
+          "chunk_id": "337ae81eaf2f61be7944d277fd97f25f554d4b0bdd6cadcc5df3da3abd20140b",
           "source": "cost_model_reference.pdf",
           "chunk_index": 3,
           "relevant_chunk_text": "Memory is not free. An embedded store's residency cost is memory, and it does not vanish merely because the process is shared with the application"
         },
         {
-          "chunk_id": "aa7741ca31538f6cf6a5833868bb72f0d19acfeb51632bc49cf73e2691664caa",
+          "chunk_id": "bdceeacdaa9096726b1881a8a627ee4962290927115ec0b7240a30832227dd74",
           "source": "cost_model_reference.pdf",
           "chunk_index": 5,
           "relevant_chunk_text": "The marginal compute row used in this reference is therefore zero dollars at 100,000 vectors, approximately 12 dollars per month at one million, and approximate"

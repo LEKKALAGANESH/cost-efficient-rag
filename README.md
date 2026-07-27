@@ -63,10 +63,14 @@ the raw number alone would misrepresent it.
 
 | Stage | p50 | p95 | p99 | n |
 |---|---:|---:|---:|---:|
-| Retrieval | **28.0 ms** | **33.4 ms** | 37.1 ms | 300 |
+| Retrieval | **33.2 ms** | **38.7 ms** | 41.7 ms | 300 |
 | Generation | **787 ms** | **4147 ms** | — | 14 |
 
-Generation dominates the median by ~28×. Optimising the vector store would move the smaller term.
+Generation dominates the median by ~24×. Optimising the vector store would move the smaller term.
+
+Retrieval figures are wall-clock on one developer machine and move by several
+milliseconds between runs depending on what else is running; the ratio to
+generation is the durable result, not the absolute numbers.
 
 ### Answer quality
 

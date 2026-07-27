@@ -36,6 +36,27 @@ def test_generated_pdf_is_byte_identical_across_builds(tmp_path: Path) -> None:
     )
 
 
+def test_the_pdf_carries_no_deflate_stream(tmp_path: Path) -> None:
+    """Byte-identical *on one machine* is not the guarantee this corpus needs.
+
+    reportlab deflates page streams by default, and deflate output is a
+    property of the zlib build rather than of the data: Windows CPython links
+    zlib-ng, the Linux CI image links stock zlib, and the two disagree on
+    byte-identical input. The two builds compared above ran on the same
+    machine, so they agreed while the committed PDF's doc_key was still
+    unreproducible anywhere else -- which is precisely how this reached CI.
+
+    Asserting the absence of compression is the check that generalises,
+    because it does not depend on which machine is running it.
+    """
+    raw = build_pdf(tmp_path / "c.pdf").read_bytes()
+    assert b"/FlateDecode" not in raw, (
+        "The PDF is compressed again. Its bytes are now zlib-build dependent, "
+        "so doc_key and every chunk_id differ between this machine and CI. "
+        "Restore pageCompression=0 in scripts/build_corpus.py."
+    )
+
+
 def test_rebuilding_the_pdf_preserves_its_doc_key(tmp_path: Path) -> None:
     committed = (CORPUS_DIR / "cost_model_reference.pdf").read_bytes()
     rebuilt = build_pdf(tmp_path / "rebuilt.pdf").read_bytes()
